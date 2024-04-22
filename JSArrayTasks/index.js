@@ -37,3 +37,18 @@ for(let i=0; i < r.length; i++){
 }
 
 console.log('After removing duplicates array is: ' + a.toString());
+
+
+// Sorting the Array
+let k = 0;
+for(let i=0; i < a.length; i++) {
+    for(let j=0; j < a.length; j++) {
+        if(a[i] < a[j]) {
+            k = a[j];
+            a[j] = a[i];
+            a[i] = k;
+        }
+    }
+}
+
+console.log('Sorted Array is: ' + a);
