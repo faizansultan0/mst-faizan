@@ -3,6 +3,7 @@
     padding: 16px 0;
     box-shadow: 0px 3px 6px #00000029;
 }
+
 .header-wrapper {
     display: flex;
     justify-content: space-between;
@@ -45,7 +46,7 @@
     height: 0;
     background-color: white;
     width: 100%;
-    transition: all 0.1s ease-in;
+    transition: all 0.1s linear;
 }
 
 .header .navbar .navbar-nav .nav-link:hover::after {
