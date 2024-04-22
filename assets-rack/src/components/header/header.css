@@ -1,0 +1,75 @@
+.header {
+    background-color: #1F0969;
+    padding: 16px 0;
+    box-shadow: 0px 3px 6px #00000029;
+}
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo, .header .logo-a {
+    display: inline-block;
+}
+
+.header .logo-img {
+    width: 227px;
+}
+
+.header .right-part {
+    display: flex;
+    gap: 37px;
+}
+
+.header .navbar .navbar-nav .nav-link {
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    margin: 0 25px;
+    padding: 0;
+    position: relative;
+}
+
+.header .navbar .navbar-nav .nav-link-txt:hover {
+    display: inline-block;
+    transition: all 0.1s ease-in;
+    transform: translateY(-4px);
+}
+
+.header .navbar .navbar-nav .nav-link::after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    background-color: white;
+    width: 100%;
+    transition: all 0.1s ease-in;
+}
+
+.header .navbar .navbar-nav .nav-link:hover::after {
+    height: 2px;
+}
+
+.header .buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.header .button {
+    padding: 16px 30px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    border-radius: 4px;
+    border: none;
+    transition: all 0.1s ease-out;
+}
+
+.header .button:first-child:hover {
+    background-color: #FFC427;
+}
+
+.header .button:nth-child(2) {
+    background-color: #FFC427;
+}

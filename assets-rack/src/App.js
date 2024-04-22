@@ -1,9 +1,14 @@
+import Home from './components/header/home/home';
+import { Route, Routes } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
   return (
-    <div className='app'>
-      <p>Assets Rack</p>
+    <div className='wrapper'>
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
     </div>
   );
 }
