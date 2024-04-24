@@ -2,6 +2,9 @@
     background-color: #1F0969;
     padding: 16px 0;
     box-shadow: 0px 3px 6px #00000029;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
 }
 
 .header-wrapper {
