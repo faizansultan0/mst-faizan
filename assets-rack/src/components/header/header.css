@@ -56,12 +56,12 @@
     height: 1px;
 }
 
-.header .buttons {
+.buttons {
     display: flex;
     gap: 6px;
 }
 
-.header .button {
+.button {
     font-size: 18px;
     padding: 16px 30px;
     font-family: 'Outfit', sans-serif;
@@ -98,7 +98,7 @@
         font-size: 15px;
     }
 
-    .header .button {
+    .button {
         padding: 13px 22px;
         font-size: 15px;
     }
@@ -122,7 +122,7 @@
         gap: 4px;
     }
 
-    .header .button {
+    .button {
         padding: 10px 20px;
         font-size: 13px;
     }
@@ -138,7 +138,7 @@
         font-size: 12px;
     }
 
-    .header .button {
+    .button {
         padding: 8px 16px;
         font-size: 12px;
     }
@@ -208,7 +208,7 @@
     }
 
 
-    .header .button {
+    .button {
         font-size: 10px;
         padding: 7px 12px;
     }
@@ -227,7 +227,7 @@
         padding: 0 2px
     }
 
-    .header .button {
+    .button {
         padding: 4px;
     }
 }

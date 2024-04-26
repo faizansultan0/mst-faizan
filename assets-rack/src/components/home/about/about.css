@@ -1,0 +1,158 @@
+.about {
+    padding-top: 150px;
+    padding-bottom: 126px;
+}
+
+.vid-parent {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vid {
+    width: 100%;
+    border-radius: 20px;
+    /* max-width: 100%; */
+    height: 420px;
+    background-color: black;
+}
+
+/* Right Part */
+.about .heading {
+    font-size: 44px;
+    font-weight: 600;
+    color: #080d42;
+    margin-bottom: 34px;
+}
+
+.about .para {
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.about .button:first-child {
+    background-color: #ffc427;
+    border: 1px solid transparent;
+}
+
+.about .button:first-child:hover {
+    background-color: transparent;
+    border-color: #707070;
+}
+
+.about .button:nth-child(2) {
+    border: 1px solid #707070;
+}
+
+.about .button:nth-child(2):hover {
+    background: #ffc427;
+    border-color: transparent;
+}
+
+@media screen and (max-width: 1800px) {
+    .about {
+        padding-top: 70px;
+    }
+
+    .about .heading {
+        font-size: 42px;
+        margin-bottom: 14px;
+    }
+
+    .about .para {
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+
+    .vid {
+        height: 360px;
+    }
+}
+
+@media screen and (max-width: 1399.9px) {
+    .about {
+        padding-top: 48px;
+        padding-bottom: 70px;
+    }
+
+    .about .heading {
+        font-size: 36px;
+        margin-bottom: 9px;
+    }
+
+    .about .para {
+        font-size: 18px;
+    }
+
+    .vid {
+        height: 310px;
+    }
+}
+
+@media screen and (max-width: 1199.9px) {
+    .about .heading {
+        font-size: 30px;
+    }
+
+    .about .para {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+}
+
+@media screen and (max-width: 991.9px) {
+    .about {
+        padding-top: 12px;
+        padding-bottom: 56px;
+    }
+
+    .about .row {
+        flex-direction: column-reverse;
+    }
+
+    .about .vid-parent {
+        padding-top: 24px;
+    }
+
+    .about .vid {
+        height: unset;
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 768.9px) {
+    .about {
+        padding-top: 0;
+        padding-bottom: 30px;
+    }
+
+    .about .vid {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .about {
+        padding-bottom: 20px;
+    }
+
+    .about .vid {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .about .heading {
+        font-size: 26px;
+    }
+
+    .about .vid {
+        width: 100%;
+    }
+
+    .about .para {
+        font-size: 14px;
+    }
+}
