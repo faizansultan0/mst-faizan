@@ -1,5 +1,6 @@
 import Header from "../header/header";
 import Banner from "./banner/banner";
+import Endorse from "./endorse/endorse";
 
 const Home = () => {
     return (
@@ -7,6 +8,7 @@ const Home = () => {
             <Header />
             <main>
                 <Banner />
+                <Endorse />
             </main>
         </>
     )

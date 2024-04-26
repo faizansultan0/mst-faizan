@@ -1,0 +1,135 @@
+.endorse {
+    padding: 37px 0 28px;
+    background: url("../../../assets/endorse-bg.png") top right no-repeat;
+}
+
+.endorse .heading {
+    font-size: 22px;
+    font-weight: 300;
+    color: #080d42;
+}
+
+.endorse .lg-heading {
+    font-size: 60px;
+    font-weight: 600;
+    color: #080d42;
+    margin: 0;
+}
+
+.endorse .slider-parent {
+    height: 100%;
+}
+
+.endorse .slider-parent div {
+    height: 100%;
+}
+
+.endorse .endorse-img-div {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.endorse .endorse-img {
+    opacity: 0.43;
+    mix-blend-mode: luminosity;
+    filter: grayscale(100%);
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+}
+
+.endorse .endorse-img-div .endorse-img:hover {
+    opacity: 1;
+    filter: none;
+}
+
+.endorse .slick-slider *:focus-visible {
+    outline: none;
+    max-width: 100%;
+}
+
+@media screen and (max-width: 1700px) {
+    .endorse .slider-parent {
+        padding-right: 80px;
+    }
+}
+
+@media screen and (max-width: 1399.9px) {
+    .endorse {
+        padding-top: 30px;
+    }
+
+    .endorse .heading {
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .endorse .lg-heading {
+        font-size: 48px;
+    }
+}
+
+@media screen and (max-width: 1199.9px) {
+    .endorse {
+        background: none;
+    }
+
+    .endorse .heading {
+        font-size: 15px;
+    }
+
+    .endorse .lg-heading {
+        font-size: 40px;
+    }
+
+    .endorse .slider-parent {
+        padding-right: 0px;
+    }
+}
+
+@media screen and (max-width: 767.9px) {
+    .endorse {
+        padding-top: 20px;
+    }
+
+    .endorse .heading {
+        font-size: 14px;
+    }
+
+    .endorse .lg-heading {
+        font-size: 38px;
+    }
+
+    .endorse .endorse-img-div {
+        padding: 0 10px;
+    }
+}
+
+@media screen and (max-width: 434px) {
+    .endorse .heading {
+        font-size: 11px;
+    }
+
+    .endorse .heading {
+        font-size: 11px;
+    }
+
+    .endorse .lg-heading {
+        font-size: 26px;
+    }
+
+    .endorse .endorse-img-div {
+        padding: 0 0px;
+    }
+
+    .endorse .endorse-img {
+        height: 26px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .endorse .lg-heading {
+        font-size: 23px;
+    }
+}
