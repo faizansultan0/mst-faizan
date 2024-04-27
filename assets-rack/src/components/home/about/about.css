@@ -53,7 +53,7 @@
 
 @media screen and (max-width: 1800px) {
     .about {
-        padding-top: 70px;
+        padding: 70px 0;
     }
 
     .about .heading {
@@ -74,7 +74,7 @@
 @media screen and (max-width: 1399.9px) {
     .about {
         padding-top: 48px;
-        padding-bottom: 70px;
+        padding-bottom: 36px;
     }
 
     .about .heading {
