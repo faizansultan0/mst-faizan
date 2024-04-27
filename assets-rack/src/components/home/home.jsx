@@ -3,6 +3,7 @@ import About from "./about/about";
 import Banner from "./banner/banner";
 import Benefits from "./benefits/benefits";
 import Endorse from "./endorse/endorse";
+import Features from "./features/features";
 import Reviews from "./reviews/reviews";
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
                 <About />
                 <Benefits />
                 <Reviews />
+                <Features />
             </main>
         </>
     )

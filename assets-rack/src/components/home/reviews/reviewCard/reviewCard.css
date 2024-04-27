@@ -207,4 +207,8 @@
     .review-card {
         padding: 7px 20px 10px;
     }
+
+    .review-card .name {
+        font-size: 18px;
+    }
 }
