@@ -1,3 +1,4 @@
+import Footer from "../footer/footer";
 import Header from "../header/header";
 import About from "./about/about";
 import Banner from "./banner/banner";
@@ -21,6 +22,7 @@ const Home = () => {
                 <Features />
                 <BlueSection />
                 <FAQS />
+                <Footer />
             </main>
         </>
     )
