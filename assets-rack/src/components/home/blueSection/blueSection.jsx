@@ -1,8 +1,52 @@
 import { Container, Row, Col } from "react-bootstrap";
-import Logo from '../../../assets/clogo.png';
+import Slider from "react-slick";
+import Logo from "../../../assets/clogo.png";
 import "./blueSection.css";
+import PlanCard from "./plancard/plancard";
 
 const BlueSection = () => {
+    const settings = {
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        arrows: false,
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 4,
+                    arrows: true,
+                    infinite: false,
+                },
+            },
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 3,
+                    arrows: true,
+                },
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                    arrows: true,
+                },
+            },
+            {
+                breakpoint: 576,
+                settings: {
+                    slidesToShow: 2,
+                    arrows: false,
+                },
+            },
+            {
+                breakpoint: 440,
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+        ],
+    };
     return (
         <section className="blue-section">
             <Container>
@@ -165,6 +209,58 @@ const BlueSection = () => {
                             fixed to the calendar year. Late Subscription will
                             be prorated within the first year.
                         </p>
+                    </div>
+                    <div className="scards">
+                        <Slider {...settings}>
+                            <div className="slider-parent">
+                                <div className="sfcard">
+                                    <div className="tpart">
+                                        <span className="tsm-text">UPTO</span>
+                                        <span className="tlg-text">300</span>
+                                        <span className="tsm-text">ASSETS</span>
+                                    </div>
+                                    <div className="bpart">
+                                        <span className="subs-text">
+                                            Subscription Plan
+                                        </span>
+                                        <span className="ars-text">
+                                            ARS-Free
+                                        </span>
+                                        <span className="sf-lg-text">FREE</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <PlanCard
+                                tlgtext={"500"}
+                                arstext={"500"}
+                                price1={120}
+                                price2={150}
+                            />
+                            <PlanCard
+                                tlgtext={"2500"}
+                                arstext={"2500"}
+                                price1={230}
+                                price2={345}
+                            />
+                            <PlanCard
+                                tlgtext={"10,000"}
+                                arstext={"10K"}
+                                price1={400}
+                                price2={600}
+                            />
+                            <PlanCard
+                                tlgtext={"50,000"}
+                                arstext={"50K"}
+                                price1={800}
+                                price2={1200}
+                            />
+                            <PlanCard
+                                tlgtext={"250,000"}
+                                arstext={"250K"}
+                                price1={1600}
+                                price2={2400}
+                            />
+                        </Slider>
                     </div>
                 </div>
             </Container>

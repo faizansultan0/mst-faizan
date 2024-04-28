@@ -1,0 +1,111 @@
+.scards .scard {
+    background-color: white;
+    border-radius: 20px;
+    padding-bottom: 41px;
+}
+
+.scards .scard .tpart {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #ffc427;
+    padding-top: 37px;
+    padding-bottom: 29px;
+    margin-bottom: 29px;
+}
+
+.scards .scard .price-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 38px;
+}
+
+.scards .scard .ars-text + .price-row {
+    margin-bottom: 20px;
+}
+
+.scards .scard .price-lg {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.scards .scard .price-sm {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.scards .scard .or-div {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.scards .scard .or-div::before {
+    content: " ";
+    position: absolute;
+    width: 100%;
+    top: 16px;
+    left: 0;
+    display: block;
+    height: 1px;
+    background-color: #d5d5d5;
+}
+
+.scards .scard .or-span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #080d42;
+    z-index: 1;
+}
+
+.scards .scard .button-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scards .scard .button {
+    color: white;
+    border-radius: 29px;
+    background-color: #080d42;
+    padding: 16px 50px;
+}
+
+@media screen and (max-width: 1399.9px) {
+    .scards .scard .price-lg {
+        font-size: 23px;
+    }
+
+    .scards .scard .button {
+        padding: 12px 38px;
+    }
+}
+
+@media screen and (max-width: 991.9px) {
+    .scards .scard .tpart {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin-bottom: 26px;
+    }
+
+    .scards .scard .price-row {
+        margin-bottom: 16px;
+    }
+
+    .scards .scard .price-lg {
+        font-size: 21px;
+    }
+
+    .scards .scard .price-sm {
+        font-size: 13px;
+    }
+}
