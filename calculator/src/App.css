@@ -1,0 +1,86 @@
+.App {
+    text-align: center;
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+/* My CSS */
+.calculator {
+    padding: 100px 30px 30px;
+    border-radius: 40px;
+    border: 1px solid grey;
+    min-width: 240px;
+}
+
+.expression {
+    overflow-x: hidden;
+}
+
+.result {
+    font-size: 40px;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 7px;
+}
+
+.button-row .button:last-child {
+    background-color: #30ad6b;
+}
+
+.button {
+    width: 70px;
+    height: 70px;
+    border-radius: 14px;
+    font-size: 24px;
+    margin-bottom: 7px;
+    background-color: rgb(31, 30, 30);
+    border: none;
+    color: white;
+}
+
+.green {
+    background-color: #30ad6b;
+}
+
+@media screen and (max-width: 1650px) {
+    .calculator {
+        padding: 54px 24px 12px;
+    }
+
+    .button {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .calculator {
+        padding: 30px 12px 12px;
+        min-width: unset;
+    }
+
+    .button-row {
+        gap: 4px;
+        justify-content: center;
+    }
+
+    .button {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}
