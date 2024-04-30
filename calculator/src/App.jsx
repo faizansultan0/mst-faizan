@@ -31,7 +31,6 @@ function App() {
                 const char = expression[i];
 
                 if (!isNaN(parseInt(char))) {
-                    console.log(typeof parseInt(char));
                     currentNumber += char;
                 }
                 if (
