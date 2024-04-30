@@ -7,7 +7,69 @@ function App() {
 
     const evaluate = () => {
         try {
-            setResult(eval(expression));
+            // setResult(eval(expression));
+            const operators = {
+                "+": (a, b) => a + b,
+                "-": (a, b) => a - b,
+                "*": (a, b) => a * b,
+                "/": (a, b) => a / b,
+            };
+
+            const precedence = {
+                "+": 1,
+                "-": 1,
+                "*": 2,
+                "/": 2,
+            };
+
+            const operatorStk = [];
+            const operandStk = [];
+
+            let currentNumber = "";
+
+            for (let i = 0; i < expression.length; i++) {
+                const char = expression[i];
+
+                if (!isNaN(parseInt(char))) {
+                    console.log(typeof parseInt(char));
+                    currentNumber += char;
+                }
+                if (
+                    char === "+" ||
+                    char === "-" ||
+                    char === "*" ||
+                    char === "/"
+                ) {
+                    if (currentNumber !== "") {
+                        operandStk.push(parseInt(currentNumber));
+                        currentNumber = "";
+                    }
+                    while (
+                        operatorStk.length > 0 &&
+                        precedence[char] <= precedence[operatorStk.length - 1]
+                    ) {
+                        const operator = operatorStk.pop();
+                        const b = operandStk.pop();
+                        const a = operandStk.pop();
+                        operandStk.push(operators[operator](a, b));
+                    }
+                    operatorStk.push(char);
+                }
+            }
+
+            if (currentNumber !== "") {
+                operandStk.push(parseInt(currentNumber));
+                currentNumber = "";
+            }
+
+            while (operatorStk.length > 0) {
+                const operator = operatorStk.pop();
+                const b = operandStk.pop();
+                const a = operandStk.pop();
+                operandStk.push(operators[operator](a, b));
+            }
+
+            setResult(operandStk.pop());
         } catch (e) {
             alert("Wrong Input");
             setExpression("0");
@@ -237,7 +299,10 @@ function App() {
 
                             {/* = Button */}
 
-                            <button className="button" onClick={evaluate}>
+                            <button
+                                className="button"
+                                onClick={() => evaluate()}
+                            >
                                 =
                             </button>
                         </div>
