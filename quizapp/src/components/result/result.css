@@ -1,0 +1,34 @@
+.result {
+    width: 100%;
+}
+
+.result .buttons-row {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}
+
+.result .buttons-row button {
+    width: 120px;
+    font-size: 12px;
+    padding: 8px 0;
+}
+
+.result h1, .result h2 {
+    color: rgb(216, 215, 122);
+}
+
+.result .sm-heading {
+    text-align: left;
+    font-size: 24px;
+}
+
+.r-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.r-row span {
+    font-size: 14px;
+    font-weight: bold;
+}

@@ -1,0 +1,39 @@
+.question-no {
+    margin: 0;
+    font-size: 20px;
+    text-align: left;
+    color: #090979;
+}
+
+.question-heading {
+    margin: 14px 0;
+    font-size: 25px;
+    text-align: left;
+}
+
+.option-item {
+    text-align: left;
+}
+
+.option-item button {
+    width: 100%;
+}
+
+.buttons-div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10pz;
+}
+
+.sm-btn {
+    font-size: 14px;
+    padding: 6px 16px;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    background-color: #090979be;
+}
+
+.sm-btn:disabled {
+    opacity: 0.5;
+}

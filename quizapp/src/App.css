@@ -1,18 +1,42 @@
-.App {
+.app {
     text-align: center;
 }
 
-.App-header {
-    background-color: #282c34;
+.app-parent {
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    color: white;
 }
 
 .App-link {
     color: #61dafb;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px 0;
+    font-weight: bold;
+    background-color: #090979df;
+    border: 2px solid transparent;
+    border-radius: 7px;
+    color: white;
+}
+
+.btn:hover {
+    border-color: #090979;
+    color: #090979;
+}
+
+.selected-btn {
+    background-color: transparent;
+    border-color: #090979;
+    color: #090979;
+}
+
+.time-btn {
+    width: 200px;
 }
