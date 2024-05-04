@@ -117,7 +117,7 @@ function App() {
         return () => {
             window.removeEventListener("beforeunload", handleBeforeUnload);
         };
-    }, []);
+    }, [qStarted, qEnded]);
 
     return (
         <div className="app">
