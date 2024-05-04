@@ -46,6 +46,11 @@
     width: 200px;
 }
 
+.time-btn:hover {
+    color: white;
+    background-color: #090979;
+}
+
 .close-btn-div {
     position: absolute;
     top: 10px;

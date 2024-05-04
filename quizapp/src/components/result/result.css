@@ -18,6 +18,10 @@
     padding: 8px 0;
 }
 
+.result .buttons-row .btn:hover {
+    color: white;
+}
+
 .result .card {
     border: 2px solid orange;
     width: 100%;
