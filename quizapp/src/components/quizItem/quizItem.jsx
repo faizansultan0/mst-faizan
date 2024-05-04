@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Row, Col } from "react-bootstrap";
+import selectAudio from '../../assets/audio/select.mp3';
 import "./quizItem.css";
 
 const QuizItem = ({
@@ -12,12 +13,15 @@ const QuizItem = ({
     isCompleted,
 }) => {
     const [selected, setSelected] = useState("");
+    const audioRef = useRef(null);
 
     useEffect(() => {
         setSelected("");
     }, [question]);
 
-    const clickHandle = (e) => {
+    const clickHandle = async (e) => {
+        audioRef.current.currentTime = 0;
+        audioRef.current.play();
         if (selected === e.target.value) {
             setSelected("");
         } else {
@@ -27,6 +31,7 @@ const QuizItem = ({
 
     return (
         <div className="quiz-item card">
+            <audio ref={audioRef} src={selectAudio} />
             {isCompleted ? (
                 <button className="sm-btn submit" onClick={submitHandle}>
                     Submit

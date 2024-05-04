@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import questions from "./data/questions";
 import QuizItem from "./components/quizItem/quizItem";
 import StartCard from "./components/startCard/startCard";
@@ -11,6 +11,7 @@ import {
     DialogActions,
     Button,
 } from "@mui/material";
+import nextAudio from './assets/audio/next.mp3';
 import "./App.css";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
     const [currentTime, setCurrentTime] = useState(null);
     const [endTime, setEndTime] = useState(null);
     const [dOpened, setDOpened] = useState(false);
+    const audioRef = useRef();
 
     // Timer Handles
     const startTimer = () => {
@@ -48,6 +50,8 @@ function App() {
 
     // Qestions Handles
     const nextHandle = (selected) => {
+        audioRef.currentTime = 0;
+        audioRef.current.play();
         const nextResult = result.slice();
         if (selected === questions[cIndex].correctOption) {
             nextResult[cIndex] = 1;
@@ -131,6 +135,7 @@ function App() {
     return (
         <div className="app">
             <div className="app-parent">
+                <audio ref={audioRef} src={nextAudio} />
                 {/* Close Button */}
                 {(qStarted || qEnded) && (
                     <div className="close-btn-div">
