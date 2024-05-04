@@ -7,6 +7,7 @@ import "./App.css";
 
 function App() {
     const [cIndex, setCIndex] = useState(0);
+    const [completed, setCompleted] = useState(false);
     const [result, setResult] = useState(Array(questions.length).fill(null));
     const [qStarted, setQStarted] = useState(false);
     const [qEnded, setQEnded] = useState(false);
@@ -41,6 +42,10 @@ function App() {
             nextResult[cIndex] = -1;
         }
         setResult(nextResult);
+        if (cIndex === questions.length - 1) {
+            setCompleted(true);
+            return;
+        }
         setCIndex(cIndex + 1);
     };
 
@@ -52,6 +57,10 @@ function App() {
         const nextResult = result.slice();
         nextResult[cIndex] = 0;
         setResult(nextResult);
+        if (cIndex === questions.length - 1) {
+            setCompleted(true);
+            return;
+        }
         setCIndex(cIndex + 1);
     };
 
@@ -67,9 +76,10 @@ function App() {
         setCIndex(0);
         setQEnded(false);
         setQStarted(false);
+        setCompleted(false);
         const nextResult = Array(questions.length).fill(null);
         setResult(nextResult);
-    }
+    };
 
     const formatTime = (time) => {
         let sec = Math.floor(time / 1000);
@@ -90,11 +100,11 @@ function App() {
                     <QuizItem
                         question={questions[cIndex]}
                         questionNo={cIndex + 1}
-                        lastQuestion={questions.length}
                         nextHandle={nextHandle}
                         prevHandle={prevHandle}
                         skipHandle={skipHandle}
                         submitHandle={submitHandle}
+                        isCompleted={completed}
                     />
                 )}
                 {qEnded && endTime && startTime && (

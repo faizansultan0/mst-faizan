@@ -1,7 +1,9 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useState, useEffect, useRef } from "react";
 import generatePDF from "react-to-pdf";
+import { PieChart } from "@mui/x-charts";
 import "./result.css";
+import { orange } from "@mui/material/colors";
 
 const Result = ({ timeTaken, result, playAgainHandle }) => {
     const targetRef = useRef();
@@ -78,7 +80,7 @@ const Result = ({ timeTaken, result, playAgainHandle }) => {
 
             <div className="bottom-part" ref={targetRef}>
                 <Container>
-                    <h1 className="result-heading">Quiz Result</h1>
+                    <h1 className="result-heading mb-3">Quiz Result</h1>
                     <div className="result-parent">
                         <Row>
                             <Col md={5}>
@@ -142,7 +144,42 @@ const Result = ({ timeTaken, result, playAgainHandle }) => {
                                     </div>
                                 </div>
                             </Col>
-                            <Col md={6}></Col>
+                            <Col md={6}>
+                                <div className="right-part">
+                                    <div className="chart-parent">
+                                        <PieChart
+                                            colors={[
+                                                "orange",
+                                                "rgb(114, 204, 255)",
+                                                "rgb(218, 0, 255)",
+                                            ]}
+                                            width={400}
+                                            height={200}
+                                            series={[
+                                                {
+                                                    data: [
+                                                        {
+                                                            id: 0,
+                                                            value: stats.correct,
+                                                            label: "Correct",
+                                                        },
+                                                        {
+                                                            id: 1,
+                                                            value: stats.wrong,
+                                                            label: "Wrong",
+                                                        },
+                                                        {
+                                                            id: 2,
+                                                            value: stats.skipped,
+                                                            label: "Skipped",
+                                                        },
+                                                    ],
+                                                },
+                                            ]}
+                                        />
+                                    </div>
+                                </div>
+                            </Col>
                         </Row>
                     </div>
                 </Container>

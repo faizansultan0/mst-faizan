@@ -9,6 +9,7 @@
     margin: 14px 0;
     font-size: 25px;
     text-align: left;
+    min-height: 60px;
 }
 
 .option-item {

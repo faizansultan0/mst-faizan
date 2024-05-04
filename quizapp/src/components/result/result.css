@@ -14,8 +14,12 @@
     padding: 8px 0;
 }
 
+.result .card {
+    border: 2px solid orange;
+}
+
 .result h1, .result h2 {
-    color: rgb(216, 215, 122);
+    color: orange;
 }
 
 .result .sm-heading {
@@ -31,4 +35,16 @@
 .r-row span {
     font-size: 14px;
     font-weight: bold;
+}
+
+.result .right-part {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white!important;
+    height: 100%;
+}
+
+.result .chart-parent {
+    width: 50%;
 }
