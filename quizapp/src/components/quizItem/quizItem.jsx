@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Row, Col } from "react-bootstrap";
-import selectAudio from '../../assets/audio/select.mp3';
+import selectAudio from "../../assets/audio/select.mp3";
 import "./quizItem.css";
 
 const QuizItem = ({
@@ -12,12 +12,9 @@ const QuizItem = ({
     submitHandle,
     isCompleted,
 }) => {
+    const [shuffledOptions, setShuffledOptions] = useState([]); 
     const [selected, setSelected] = useState("");
     const audioRef = useRef(null);
-
-    useEffect(() => {
-        setSelected("");
-    }, [question]);
 
     const clickHandle = async (e) => {
         audioRef.current.currentTime = 0;
@@ -28,6 +25,22 @@ const QuizItem = ({
             setSelected(e.target.value);
         }
     };
+
+    const shuffleOptions = () => {
+        const newOptions = [...question.options];
+        let j = 0;
+        for (let i = newOptions.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            [newOptions[i], newOptions[j]] = [newOptions[j], newOptions[i]]
+        }
+
+        setShuffledOptions(newOptions);
+    } 
+
+    useEffect(() => {
+        setSelected("");
+        shuffleOptions();
+    }, [question]);
 
     return (
         <div className="quiz-item card">
@@ -42,7 +55,7 @@ const QuizItem = ({
                     <h2 className="question-heading">{question.question}</h2>
                     <form className="q-form mb-sm-4 mb-2">
                         <Row>
-                            {question.options.map((option, i) => (
+                            {shuffledOptions.map((option, i) => (
                                 <Col sm={6} className="mb-2" key={option}>
                                     <div className="option-item">
                                         <input

@@ -70,7 +70,7 @@ function App() {
     const playAgainHandle = () => {
         setSec(0);
         setStopTimer(false);
-        setCurrentTime("0 : 00");
+        setCurrentTime("0 : 0");
         setCIndex(0);
         setQEnded(false);
         setQStarted(false);
@@ -95,11 +95,14 @@ function App() {
         const interval = setInterval(() => {
             if (qStarted && !qEnded && !stopTimer) {
                 setSec((prevSec) => prevSec + 1);
-                setCurrentTime(`${Math.floor(sec / 60)} : ${sec % 60}`);
             }
         }, 1000);
         return () => clearInterval(interval);
     }, [qStarted, qEnded, stopTimer, sec]);
+
+    useEffect(() => {
+        setCurrentTime(`${Math.floor(sec / 60)} : ${sec % 60}`);
+    }, [sec]);
 
     // If user tries to reload or close tab during or after quiz
     useEffect(() => {
@@ -159,7 +162,7 @@ function App() {
                 {/* Timer */}
                 {qStarted && !qEnded && (
                     <div className="btn mb-3 time-btn">
-                        Time : {currentTime}
+                        Time : {currentTime ? currentTime : "0 : 0"}
                     </div>
                 )}
 
