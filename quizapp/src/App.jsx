@@ -105,6 +105,7 @@ function App() {
         setDOpened(false);
     };
 
+    // If user tries to reload or close tab during or after quiz
     useEffect(() => {
         const handleBeforeUnload = (event) => {
             if (qStarted || qEnded) {
