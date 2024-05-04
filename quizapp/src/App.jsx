@@ -105,24 +105,36 @@ function App() {
         setDOpened(false);
     };
 
+    useEffect(() => {
+        const handleBeforeUnload = (event) => {
+            if (qStarted || qEnded) {
+                event.returnValue = ""; // For older browsers
+                return (event.returnValue =
+                    "Are you sure you want to leave? All your progress will be lost.");
+            }
+            event.preventDefault();
+        };
+
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
+    }, []);
+
     return (
         <div className="app">
             <div className="app-parent">
                 {/* Close Button */}
-                {(qStarted ||
-                    qEnded) && (
-                        <div className="close-btn-div">
-                            <button
-                                className="close-btn btn"
-                                onClick={handleClose}
-                            >
-                                X
-                            </button>
-                        </div>
-                    )}
+                {(qStarted || qEnded) && (
+                    <div className="close-btn-div">
+                        <button className="close-btn btn" onClick={handleClose}>
+                            X
+                        </button>
+                    </div>
+                )}
 
                 {/* Close Dialog */}
-
                 <Dialog
                     open={dOpened}
                     // onClose={handleClose}
