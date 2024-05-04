@@ -3,6 +3,14 @@ import questions from "./data/questions";
 import QuizItem from "./components/quizItem/quizItem";
 import StartCard from "./components/startCard/startCard";
 import Result from "./components/result/result";
+import {
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions,
+    Button,
+} from "@mui/material";
 import "./App.css";
 
 function App() {
@@ -14,6 +22,7 @@ function App() {
     const [startTime, setStartTime] = useState(null);
     const [currentTime, setCurrentTime] = useState(null);
     const [endTime, setEndTime] = useState(null);
+    const [dOpened, setDOpened] = useState(false);
 
     const startTimer = () => {
         setStartTime(Date.now());
@@ -79,6 +88,7 @@ function App() {
         setCompleted(false);
         const nextResult = Array(questions.length).fill(null);
         setResult(nextResult);
+        setDOpened(false);
     };
 
     const formatTime = (time) => {
@@ -87,15 +97,66 @@ function App() {
         return `${min} : ${sec % 60}`;
     };
 
+    const handleClose = () => {
+        setDOpened(true);
+    };
+
+    const onDClose = () => {
+        setDOpened(false);
+    };
+
     return (
         <div className="app">
             <div className="app-parent">
+                {/* Close Button */}
+                {(qStarted ||
+                    qEnded) && (
+                        <div className="close-btn-div">
+                            <button
+                                className="close-btn btn"
+                                onClick={handleClose}
+                            >
+                                X
+                            </button>
+                        </div>
+                    )}
+
+                {/* Close Dialog */}
+
+                <Dialog
+                    open={dOpened}
+                    // onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">
+                        {"Are you sure?"}
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            If you quit this quiz, your marked data would be
+                            lost in this case
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={playAgainHandle}>Quit</Button>
+                        <Button onClick={onDClose} autoFocus>
+                            Close
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+
+                {/* Timer */}
                 {startTime && !endTime && (
                     <div className="btn mb-3 time-btn">
                         Time : {formatTime(currentTime - startTime)}
                     </div>
                 )}
+
+                {/* Start Card */}
                 {!qStarted && <StartCard startHandle={startHandle} />}
+
+                {/* Quiz Questions */}
                 {qStarted && !qEnded && (
                     <QuizItem
                         question={questions[cIndex]}
@@ -107,6 +168,8 @@ function App() {
                         isCompleted={completed}
                     />
                 )}
+
+                {/* Result Card */}
                 {qEnded && endTime && startTime && (
                     <Result
                         timeTaken={formatTime(endTime - startTime)}

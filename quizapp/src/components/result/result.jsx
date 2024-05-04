@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import generatePDF from "react-to-pdf";
 import { PieChart } from "@mui/x-charts";
 import "./result.css";
-import { orange } from "@mui/material/colors";
 
 const Result = ({ timeTaken, result, playAgainHandle }) => {
     const targetRef = useRef();
