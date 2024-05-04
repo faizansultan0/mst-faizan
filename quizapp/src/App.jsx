@@ -24,6 +24,7 @@ function App() {
     const [endTime, setEndTime] = useState(null);
     const [dOpened, setDOpened] = useState(false);
 
+    // Timer Handles
     const startTimer = () => {
         setStartTime(Date.now());
     };
@@ -38,11 +39,14 @@ function App() {
     };
 
     useEffect(() => {
-        setInterval(() => {
-            setCurrentTime(Date.now());
+        const interval = setInterval(() => {
+            if (!qEnded) setCurrentTime(Date.now());
         }, 100);
-    }, [startTime]);
 
+        return () => clearInterval(interval);
+    }, [startTime, qEnded]);
+
+    // Qestions Handles
     const nextHandle = (selected) => {
         const nextResult = result.slice();
         if (selected === questions[cIndex].correctOption) {
@@ -106,14 +110,15 @@ function App() {
     };
 
     // If user tries to reload or close tab during or after quiz
+    
     useEffect(() => {
         const handleBeforeUnload = (event) => {
             if (qStarted || qEnded) {
+                event.preventDefault();
                 event.returnValue = ""; // For older browsers
                 return (event.returnValue =
                     "Are you sure you want to leave? All your progress will be lost.");
             }
-            event.preventDefault();
         };
 
         window.addEventListener("beforeunload", handleBeforeUnload);

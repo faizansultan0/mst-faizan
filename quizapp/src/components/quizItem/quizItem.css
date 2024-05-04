@@ -38,3 +38,24 @@
 .sm-btn:disabled {
     opacity: 0.5;
 }
+
+@media screen and (max-width: 380px) {
+    .question-no {
+        font-size: 16px;
+    }
+
+    .question-heading {
+        margin: 4px 0;
+        font-size: 20px;
+    }
+
+    .option-item .btn {
+        font-size: 12px;
+        padding: 4px 0;
+    }
+
+    .sm-btn {
+        font-size: 12px;
+        padding: 4px 16px;
+    }
+}

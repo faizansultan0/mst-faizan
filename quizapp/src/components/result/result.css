@@ -2,9 +2,13 @@
     width: 100%;
 }
 
+.result .top-part {
+    padding-top: 10px;
+}
+
 .result .buttons-row {
     display: flex;
-    justify-content: end;
+    justify-content: start;
     gap: 10px;
 }
 
@@ -16,9 +20,11 @@
 
 .result .card {
     border: 2px solid orange;
+    width: 100%;
 }
 
-.result h1, .result h2 {
+.result h1,
+.result h2 {
     color: orange;
 }
 
@@ -41,10 +47,46 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white!important;
+    color: white !important;
     height: 100%;
 }
 
 .result .chart-parent {
-    width: 50%;
+    width: 75%;
+    height: 75%;
+}
+
+@media screen and (max-width: 768px) {
+    .result .right-part {
+        padding: 16px 0;
+    }
+
+    .result .chart-parent {
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .result .chart-parent {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .close-btn-div {
+        top: 14px;
+        right: 14px;
+    }
+    .result .buttons-row {
+        gap: 4px;
+    }
+
+    .result .buttons-row button {
+        width: 100px;
+        font-size: 11px;
+    }
+
+    .result .chart-parent {
+        height: 140px;
+    }
 }

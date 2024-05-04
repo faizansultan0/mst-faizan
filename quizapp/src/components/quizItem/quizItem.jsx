@@ -35,7 +35,7 @@ const QuizItem = ({
                 <>
                     <h1 className="question-no">Question No.{questionNo}</h1>
                     <h2 className="question-heading">{question.question}</h2>
-                    <form className="q-form mb-4">
+                    <form className="q-form mb-sm-4 mb-2">
                         <Row>
                             {question.options.map((option, i) => (
                                 <Col sm={6} className="mb-2" key={option}>

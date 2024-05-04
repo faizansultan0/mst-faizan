@@ -3,7 +3,12 @@
 }
 
 .app-parent {
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    background: linear-gradient(
+        90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(9, 9, 121, 1) 35%,
+        rgba(0, 212, 255, 1) 100%
+    );
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -68,4 +73,18 @@
 
 .app .app-parent .MuiPaper-root {
     background-color: rgb(15, 18, 20);
+}
+
+@media screen and (max-width: 380px) {
+    .btn {
+        font-size: 14px;
+        padding: 8px 0;
+    }
+
+    .time-btn {
+        font-size: 12px;
+        padding: 4px 0;
+        width: 150px;
+        margin-top: 10px;
+    }
 }

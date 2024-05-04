@@ -82,7 +82,7 @@ const Result = ({ timeTaken, result, playAgainHandle }) => {
                     <h1 className="result-heading mb-3">Quiz Result</h1>
                     <div className="result-parent">
                         <Row>
-                            <Col md={5}>
+                            <Col md={4}>
                                 <div className="left-part">
                                     <h2 className="sm-heading">Your Result</h2>
                                     <div className="card">
@@ -143,7 +143,7 @@ const Result = ({ timeTaken, result, playAgainHandle }) => {
                                     </div>
                                 </div>
                             </Col>
-                            <Col md={6}>
+                            <Col md={8}>
                                 <div className="right-part">
                                     <div className="chart-parent">
                                         <PieChart
@@ -152,8 +152,7 @@ const Result = ({ timeTaken, result, playAgainHandle }) => {
                                                 "rgb(114, 204, 255)",
                                                 "rgb(218, 0, 255)",
                                             ]}
-                                            width={400}
-                                            height={200}
+                                            className="chart"
                                             series={[
                                                 {
                                                     data: [

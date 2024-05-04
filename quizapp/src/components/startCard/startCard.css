@@ -11,3 +11,15 @@
     margin: 0;
     margin-bottom: 20px;
 }
+
+@media screen and (max-width: 380px) {
+    .card {
+        width: 264px;
+        padding: 20px 14px;
+    }
+    .card .start-heading {
+        font-size: 34px;
+    }
+
+
+}
