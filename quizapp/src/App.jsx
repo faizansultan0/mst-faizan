@@ -26,22 +26,11 @@ function App() {
     const [sec, setSec] = useState(0);
     const audioRef = useRef();
 
-    // Timer Handles
+    // Qestions Handles
     const startHandle = () => {
         setQStarted(true);
     };
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (!qEnded && !stopTimer) {
-                setSec(prevSec => prevSec + 1)
-                setCurrentTime(`${Math.floor(sec / 60)} : ${sec % 60}`);
-            }
-        }, 1000);
-        return () => clearInterval(interval);
-    }, [qEnded, stopTimer, sec]);
-
-    // Qestions Handles
     const nextHandle = (selected) => {
         audioRef.currentTime = 0;
         audioRef.current.play();
@@ -81,7 +70,7 @@ function App() {
     const playAgainHandle = () => {
         setSec(0);
         setStopTimer(false);
-        setCurrentTime('0 : 00');
+        setCurrentTime("0 : 00");
         setCIndex(0);
         setQEnded(false);
         setQStarted(false);
@@ -100,6 +89,17 @@ function App() {
         setStopTimer(false);
         setDOpened(false);
     };
+
+    // Timer Functionality
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (qStarted && !qEnded && !stopTimer) {
+                setSec((prevSec) => prevSec + 1);
+                setCurrentTime(`${Math.floor(sec / 60)} : ${sec % 60}`);
+            }
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [qStarted, qEnded, stopTimer, sec]);
 
     // If user tries to reload or close tab during or after quiz
     useEffect(() => {
