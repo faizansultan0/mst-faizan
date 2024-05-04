@@ -11,7 +11,7 @@ import {
     DialogActions,
     Button,
 } from "@mui/material";
-import nextAudio from './assets/audio/next.mp3';
+import nextAudio from "./assets/audio/next.mp3";
 import "./App.css";
 
 function App() {
@@ -20,33 +20,26 @@ function App() {
     const [result, setResult] = useState(Array(questions.length).fill(null));
     const [qStarted, setQStarted] = useState(false);
     const [qEnded, setQEnded] = useState(false);
-    const [startTime, setStartTime] = useState(null);
     const [currentTime, setCurrentTime] = useState(null);
-    const [endTime, setEndTime] = useState(null);
+    const [stopTimer, setStopTimer] = useState(false);
     const [dOpened, setDOpened] = useState(false);
+    const [sec, setSec] = useState(0);
     const audioRef = useRef();
 
     // Timer Handles
-    const startTimer = () => {
-        setStartTime(Date.now());
-    };
-
-    const endTimer = () => {
-        setEndTime(Date.now());
-    };
-
     const startHandle = () => {
         setQStarted(true);
-        startTimer();
     };
 
     useEffect(() => {
         const interval = setInterval(() => {
-            if (!qEnded) setCurrentTime(Date.now());
-        }, 100);
-
+            if (!qEnded && !stopTimer) {
+                setSec(prevSec => prevSec + 1)
+                setCurrentTime(`${Math.floor(sec / 60)} : ${sec % 60}`);
+            }
+        }, 1000);
         return () => clearInterval(interval);
-    }, [startTime, qEnded]);
+    }, [qEnded, stopTimer, sec]);
 
     // Qestions Handles
     const nextHandle = (selected) => {
@@ -82,14 +75,13 @@ function App() {
     };
 
     const submitHandle = () => {
-        endTimer();
         setQEnded(true);
     };
 
     const playAgainHandle = () => {
-        setStartTime(null);
-        setCurrentTime(null);
-        setEndTime(null);
+        setSec(0);
+        setStopTimer(false);
+        setCurrentTime('0 : 00');
         setCIndex(0);
         setQEnded(false);
         setQStarted(false);
@@ -99,22 +91,17 @@ function App() {
         setDOpened(false);
     };
 
-    const formatTime = (time) => {
-        let sec = Math.floor(time / 1000);
-        let min = Math.floor(sec / 60);
-        return `${min} : ${sec % 60}`;
-    };
-
     const handleClose = () => {
+        setStopTimer(true);
         setDOpened(true);
     };
 
     const onDClose = () => {
+        setStopTimer(false);
         setDOpened(false);
     };
 
     // If user tries to reload or close tab during or after quiz
-    
     useEffect(() => {
         const handleBeforeUnload = (event) => {
             if (qStarted || qEnded) {
@@ -170,9 +157,9 @@ function App() {
                 </Dialog>
 
                 {/* Timer */}
-                {startTime && !endTime && (
+                {qStarted && !qEnded && (
                     <div className="btn mb-3 time-btn">
-                        Time : {formatTime(currentTime - startTime)}
+                        Time : {currentTime}
                     </div>
                 )}
 
@@ -193,9 +180,9 @@ function App() {
                 )}
 
                 {/* Result Card */}
-                {qEnded && endTime && startTime && (
+                {qEnded && currentTime && (
                     <Result
-                        timeTaken={formatTime(endTime - startTime)}
+                        timeTaken={currentTime}
                         result={result}
                         playAgainHandle={playAgainHandle}
                     />
