@@ -1,9 +1,12 @@
 import { Container, Card, Form, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
+import axios from "axios";
 import "./signup.css";
 
 const SignUp = () => {
-    const [data, setData] = useState({
+    const [errMsg, setErrMsg] = useState("");
+    const [successMsg, setSuccessMsg] = useState("");
+    const [userData, setUserData] = useState({
         fname: "",
         lname: "",
         email: "",
@@ -11,11 +14,31 @@ const SignUp = () => {
     });
 
     const handleChange = (e) => {
-        setData({ ...data, [e.target.name]: e.target.value });
+        setSuccessMsg('');
+        setUserData({ ...userData, [e.target.name]: e.target.value });
     };
 
-    const submitHandle = (e) => {
+    const submitHandle = async (e) => {
         e.preventDefault();
+        setErrMsg("");
+        setSuccessMsg("");
+        try {
+            const { data } = await axios.post(
+                `${process.env.REACT_APP_SERVER_URL}/user/signup`,
+                {
+                    userData,
+                }
+            );
+
+            if (data.error) {
+                setErrMsg(data.error);
+                console.log(data.error);
+            } else {
+                setSuccessMsg(data.message);
+            }
+        } catch (err) {
+            console.log("Error while sending signup data: ", err);
+        }
     };
 
     return (
@@ -37,7 +60,7 @@ const SignUp = () => {
                                             type="text"
                                             placeholder="First name"
                                             name="fname"
-                                            value={data.fname}
+                                            value={userData.fname}
                                             onChange={handleChange}
                                             required
                                         />
@@ -52,7 +75,7 @@ const SignUp = () => {
                                             type="text"
                                             placeholder="Last name"
                                             name="lname"
-                                            value={data.lname}
+                                            value={userData.lname}
                                             onChange={handleChange}
                                         />
                                     </Form.Group>
@@ -66,13 +89,14 @@ const SignUp = () => {
                                             type="email"
                                             placeholder="Enter email"
                                             name="email"
-                                            value={data.email}
+                                            autoComplete="email"
+                                            value={userData.email}
                                             onChange={handleChange}
                                             required
                                         />
                                     </Form.Group>
                                 </Col>
-                                <Col sm={12}>
+                                <Col xs={12}>
                                     <Form.Group
                                         className="mb-3"
                                         controlId="password"
@@ -81,14 +105,29 @@ const SignUp = () => {
                                             type="password"
                                             placeholder="Enter password"
                                             name="password"
-                                            value={data.password}
+                                            autoComplete="current-password"
+                                            value={userData.password}
                                             onChange={handleChange}
                                             required
                                         />
                                     </Form.Group>
                                 </Col>
-                                <Col>
-                                    <Button type="submit" className="w-100 btn">
+                                {errMsg && (
+                                    <Col xs={12}>
+                                        <p className="errMsg mb-2 text-danger">
+                                            {errMsg}
+                                        </p>
+                                    </Col>
+                                )}
+                                {successMsg && (
+                                    <Col xs={12}>
+                                        <p className="errMsg mb-2 text-success">
+                                            {successMsg}
+                                        </p>
+                                    </Col>
+                                )}
+                                <Col xs={12}>
+                                    <Button type="submit" className="w-100 btn" disabled={successMsg}>
                                         Create Account
                                     </Button>
                                 </Col>
