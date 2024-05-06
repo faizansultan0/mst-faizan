@@ -14,7 +14,7 @@ dbConnection();
 // Middlewares
 app.use(cors());
 app.use(express.json());
-app.use(morgan());
+app.use(morgan("tiny"));
 
 // Routes
 app.use('/api/user', authRoutes);

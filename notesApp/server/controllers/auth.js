@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const sendEmail = require("../helpers/sendmail");
 const crypto = require("crypto");
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 
 const signup = async (req, res) => {
     const { fname, lname, email, password } = req.body.userData;
@@ -94,4 +95,34 @@ const verifyToken = async (req, res) => {
     }
 };
 
-module.exports = { signup, verifyToken };
+const signin = async (req, res) => {
+    try {
+        const user = await User.findOne({email: req.body.user.email});
+        if (!user) {
+            return res.json({
+                error: "Invalid email or password",
+            })
+        }
+
+        const validPassword = await bcrypt.compare(req.body.user.password, user.password);
+        if (!validPassword) return res.json({ error: "Invalid email or password" });
+
+        const token = jwt.sign({ _id: req.body.user.id }, process.env.JWT_SECRET, {
+            expiresIn: '100d',
+        })
+
+        user.password = undefined;
+        user.secret = undefined;
+
+        return res.json({
+            message: "Login successfull",
+            token,
+            user
+        })
+    } catch (err) {
+        console.log('Sign in Error: ', err);
+        res.status(500).json({ error: "An issue occured while fetching data" });
+    }
+}
+
+module.exports = { signup, verifyToken, signin };
