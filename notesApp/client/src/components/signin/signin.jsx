@@ -1,29 +1,28 @@
 import { Container, Card, Form, Row, Col, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "./signin.css";
+import { UserContext } from "../../context";
 
 const SignIn = () => {
     const [errMsg, setErrMsg] = useState("");
-    const [successMsg, setSuccessMsg] = useState("");
     const [user, setUser] = useState({
         email: "",
         password: "",
     });
+    const [state, setState] = useContext(UserContext);
 
     const navigate = useNavigate();
 
     const handleChange = (e) => {
-        setSuccessMsg("");
         setUser({ ...user, [e.target.name]: e.target.value });
     };
 
     const submitHandle = async (e) => {
         e.preventDefault();
         setErrMsg("");
-        setSuccessMsg("");
         try {
             const { data } = await axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/user/signin`,
@@ -36,16 +35,24 @@ const SignIn = () => {
                 setErrMsg(data.error);
                 console.log(data.error);
             } else {
-                window.localStorage.setItem("Auth", JSON.stringify(data));
-                setSuccessMsg(data.message);
-                toast(successMsg);
+                console.log('Received Data: ', data)
+                setState(data);
+                window.localStorage.setItem("auth", JSON.stringify(data));
+                toast(data.message);
                 setUser({ email: "", password: "" });
-                navigate('/');
+                navigate("/");
             }
         } catch (err) {
             console.log("Error while sigin in: ", err);
         }
     };
+
+    useEffect(() => {
+        if (state && state.token) {
+            // console.log(state);
+            navigate("/");
+        }
+    }, [state]);
 
     return (
         <div className="signup">
@@ -97,19 +104,8 @@ const SignIn = () => {
                                         </p>
                                     </Col>
                                 )}
-                                {successMsg && (
-                                    <Col xs={12}>
-                                        <p className="errMsg mb-2 text-success">
-                                            {successMsg}
-                                        </p>
-                                    </Col>
-                                )}
                                 <Col xs={12}>
-                                    <Button
-                                        type="submit"
-                                        className="w-100 btn"
-                                        disabled={successMsg}
-                                    >
+                                    <Button type="submit" className="w-100 btn">
                                         Sign in
                                     </Button>
                                 </Col>

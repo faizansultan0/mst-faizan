@@ -97,6 +97,7 @@ const verifyToken = async (req, res) => {
 
 const signin = async (req, res) => {
     try {
+        // console.log(req.body);
         const user = await User.findOne({email: req.body.user.email});
         if (!user) {
             return res.json({
@@ -107,7 +108,7 @@ const signin = async (req, res) => {
         const validPassword = await bcrypt.compare(req.body.user.password, user.password);
         if (!validPassword) return res.json({ error: "Invalid email or password" });
 
-        const token = jwt.sign({ _id: req.body.user.id }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
             expiresIn: '100d',
         })
 
@@ -125,4 +126,20 @@ const signin = async (req, res) => {
     }
 }
 
-module.exports = { signup, verifyToken, signin };
+const currentUser = async (req, res) => {
+    try {
+        // console.log(req.auth);
+        let user = await User.findById(req.auth._id);
+        if (!user) return res.json({ error: "UnAuthorized Access" });
+
+        return res.status(200).json({ok: true})
+
+    } catch (err) {
+        console.log('User Authentication ERR: ', err);
+        res.status(401).json({
+            error: "UnAuthorized Access",
+        })
+    }
+}
+
+module.exports = { signup, verifyToken, signin, currentUser };

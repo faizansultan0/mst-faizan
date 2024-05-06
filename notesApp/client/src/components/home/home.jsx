@@ -1,7 +1,12 @@
+import UserRoute from "../../routes/userRoute";
 import "./home.css";
 
 const Home = () => {
-    return <div>Home</div>;
+    return (
+        <UserRoute>
+            <div>Home</div>
+        </UserRoute>
+    );
 };
 
 export default Home;
