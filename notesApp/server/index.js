@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const dbConnection = require('./db/db');
 const authRoutes = require('./routes/auth');
+const notesRoutes = require('./routes/notes');
 const morgan = require('morgan')
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(morgan("tiny"));
 
 // Routes
 app.use('/api/user', authRoutes);
+app.use('/api/note', notesRoutes)
 
 app.listen(PORT, () => {
     console.log(`Listening at PORT ${PORT}`);

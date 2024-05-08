@@ -22,25 +22,27 @@ const UserProvider = ({ children }) => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
     // Adding response interceptor
-    axios.interceptors.response.use(
-        (res) => {
-            return res;
-        },
-        (err) => {
-            let res = err.response;
-            if (
-                res.status === 401 &&
-                res.config &&
-                !res.config._isRetryRequest
-            ) {
-                setState({});
-                window.localStorage.removeItem("auth");
-                navigate("/signin");
-            }
+    useEffect(() => {
+        axios.interceptors.response.use(
+            (res) => {
+                return res;
+            },
+            (err) => {
+                let res = err.response;
+                if (
+                    res.status === 401 &&
+                    res.config &&
+                    !res.config._isRetryRequest
+                ) {
+                    setState({});
+                    window.localStorage.removeItem("auth");
+                    navigate("/signin");
+                }
 
-            return Promise.reject(err);
-        }
-    );
+                return Promise.reject(err);
+            }
+        );
+    });
 
     return (
         <UserContext.Provider value={[state, setState]}>
