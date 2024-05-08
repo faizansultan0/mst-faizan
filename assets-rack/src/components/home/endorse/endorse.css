@@ -54,6 +54,10 @@
     .endorse .slider-parent {
         padding-right: 80px;
     }
+
+    .endorse .endorse-img {
+        max-height: 64px;
+    }
 }
 
 @media screen and (max-width: 1399.9px) {
@@ -68,6 +72,10 @@
 
     .endorse .lg-heading {
         font-size: 48px;
+    }
+
+    .endorse .endorse-img {
+        max-height: 44px;
     }
 }
 
@@ -104,6 +112,10 @@
 
     .endorse .endorse-img-div {
         padding: 0 10px;
+    }
+
+    .endorse .endorse-img {
+        max-height: 34px;
     }
 }
 
