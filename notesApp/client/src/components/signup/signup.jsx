@@ -1,5 +1,6 @@
 import { Container, Card, Form, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./signup.css";
 
@@ -49,7 +50,7 @@ const SignUp = () => {
                         <h1 className="sign-h mb-4">
                             Welcome to Notes! Sign up here
                         </h1>
-                        <Form onSubmit={submitHandle}>
+                        <Form onSubmit={submitHandle} className="mb-2">
                             <Row>
                                 <Col md={6}>
                                     <Form.Group
@@ -127,12 +128,20 @@ const SignUp = () => {
                                     </Col>
                                 )}
                                 <Col xs={12}>
-                                    <Button type="submit" className="w-100 btn" disabled={successMsg}>
+                                    <Button
+                                        type="submit"
+                                        className="w-100 btn"
+                                        disabled={successMsg}
+                                    >
                                         Create Account
                                     </Button>
                                 </Col>
                             </Row>
                         </Form>
+
+                        <p className="para">
+                            Already registered? <Link to="/signin">Sign in</Link>
+                        </p>
                     </Card>
                 </div>
             </Container>

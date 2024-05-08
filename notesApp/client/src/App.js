@@ -9,6 +9,7 @@ import { UserProvider } from "./context";
 function App() {
     return (
         <UserProvider>
+
             <div className="App">
                 <Routes>
                     <Route exact path="/" element={<Home />} />
