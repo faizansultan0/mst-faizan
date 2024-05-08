@@ -1,6 +1,10 @@
 import { Container, Row, Col } from "react-bootstrap";
 import Slider from "react-slick";
-import EndorseImage from "../../../assets/endorse1.png";
+import EndorseImage1 from "../../../assets/endorse1.png";
+import EndorseImage2 from "../../../assets/endorse2.png";
+import EndorseImage3 from "../../../assets/endorse3.png";
+import EndorseImage4 from "../../../assets/endorse4.png";
+import EndorseImage5 from "../../../assets/endorse5.png";
 import "./endorse.css";
 
 const Endorse = () => {
@@ -54,35 +58,35 @@ const Endorse = () => {
                                 <Slider {...settings}>
                                     <div className="endorse-img-div">
                                         <img
-                                            src={EndorseImage}
+                                            src={EndorseImage1}
                                             alt="Amazon Logistics Logo"
                                             className="endorse-img"
                                         />
                                     </div>
                                     <div className="endorse-img-div">
                                         <img
-                                            src={EndorseImage}
+                                            src={EndorseImage2}
                                             alt="Amazon Logistics Logo"
                                             className="endorse-img"
                                         />
                                     </div>
                                     <div className="endorse-img-div">
                                         <img
-                                            src={EndorseImage}
+                                            src={EndorseImage3}
                                             alt="Amazon Logistics Logo"
                                             className="endorse-img"
                                         />
                                     </div>
                                     <div className="endorse-img-div">
                                         <img
-                                            src={EndorseImage}
+                                            src={EndorseImage4}
                                             alt="Amazon Logistics Logo"
                                             className="endorse-img"
                                         />
                                     </div>
                                     <div className="endorse-img-div">
                                         <img
-                                            src={EndorseImage}
+                                            src={EndorseImage5}
                                             alt="Amazon Logistics Logo"
                                             className="endorse-img"
                                         />

@@ -18,21 +18,22 @@ const Reviews = () => {
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 2,
-                }
-            }, 
+                },
+            },
             {
                 breakpoint: 537,
                 settings: {
                     slidesToShow: 1,
-                }
-            }
-        ]
+                },
+            },
+        ],
     };
 
     return (
         <section className="reviews">
             <Container>
                 <div className="reviews-parent">
+                    <div className="reviews-bg"></div>
                     <h2 className="heading">Reviews</h2>
                     <div className="top-part">
                         <Row className="justify-content-between">
@@ -56,14 +57,14 @@ const Reviews = () => {
                     </div>
                     <div className="bottom-part">
                         <Row>
-                            <Col lg={2} md={3} >
+                            <Col lg={2} md={3}>
                                 <div className="left-part">
                                     <button className="button">
                                         Check All Reviews
                                     </button>
                                 </div>
                             </Col>
-                            <Col lg={10} md={9} >
+                            <Col lg={10} md={9}>
                                 <div className="review-cards">
                                     <Slider {...settings}>
                                         <ReviewCard

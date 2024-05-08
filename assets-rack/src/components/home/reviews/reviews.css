@@ -1,8 +1,27 @@
 .reviews {
     padding-top: 162px;
-    background: url("../../../assets//reviewsbg.svg") top right no-repeat,
-        transparent linear-gradient(180deg, #faf9fe 0%, #faf9fe 100%) 0% 0%
-            no-repeat padding-box;
+}
+
+.reviews .reviews-parent {
+    position: relative;
+}
+
+.reviews .reviews-parent .reviews-bg {
+    position: absolute;
+    width: 90%;
+    height: 100%;
+    border-radius: 80px;
+    top: 0;
+    right: 0;
+    background:
+        /* url("../../../assets//reviewsbg.svg") 100% 100% no-repeat, */
+        linear-gradient(180deg, #faf9fe 0%, #faf9fe 100%) top right no-repeat
+            padding-box;
+}
+
+.reviews .top-part {
+    position: relative;
+    z-index: 1;
 }
 
 .reviews .heading {
@@ -36,6 +55,8 @@
 
 .reviews .bottom-part .left-part {
     padding-top: 196px;
+    position: relative;
+    z-index: 100;
 }
 
 .reviews .bottom-part .button {
