@@ -33,15 +33,16 @@ const SignIn = () => {
                 toast.error(data.error);
                 console.log(data.error);
             } else {
-                toast.success('Successful login');
-                console.log('Received Data: ', data)
-                // setState(data);
-                // window.localStorage.setItem("auth", JSON.stringify(data));
-                // setUser({ email: "", password: "" });
-                // navigate("/");
+                toast.success("Successful login");
+                // console.log("Received Data: ", data);
+                setState(data);
+                window.localStorage.setItem("auth", JSON.stringify(data));
+                setUser({ email: "", password: "" });
+                navigate("/");
             }
         } catch (err) {
             console.log("Error while sigin in: ", err);
+            toast.error("Cannot Sign in");
         }
     };
 
@@ -54,7 +55,6 @@ const SignIn = () => {
 
     return (
         <div className="signup">
-
             <Container>
                 <div className="card-parent">
                     <Card>
@@ -103,7 +103,7 @@ const SignIn = () => {
                             </Row>
                         </Form>
                         <p className="para">
-                            New user? <Link to='/signup'>Sign up</Link>
+                            New user? <Link to="/signup">Sign up</Link>
                         </p>
                     </Card>
                 </div>

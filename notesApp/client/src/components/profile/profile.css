@@ -1,0 +1,7 @@
+.profile {
+    min-height: 100vh;
+}
+
+.profile .text-sm {
+    font-size: 14px;
+}

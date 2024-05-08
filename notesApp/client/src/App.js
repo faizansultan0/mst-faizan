@@ -4,6 +4,7 @@ import Home from "./components/home/home";
 import SignUp from "./components/signup/signup";
 import SignIn from "./components/signin/signin";
 import VerifyMail from "./components/verifyMail/verifyMail";
+import Profile from "./components/profile/profile";
 import { UserProvider } from "./context";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                         path="/users/:id/verify/:token"
                         element={<VerifyMail />}
                     />
+                    <Route path="/profile/" element={<Profile />} />
                 </Routes>
             </div>
         </UserProvider>
