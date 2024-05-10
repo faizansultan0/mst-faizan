@@ -14,7 +14,7 @@ const Home = () => {
     const [state] = useContext(UserContext);
 
     useEffect(() => {
-        const getAllNotes = async (req, res) => {
+        const getAllNotes = async () => {
             try {
                 setErrMsg('');
                 const { data } = await axios.get(
@@ -42,7 +42,8 @@ const Home = () => {
                 <div className="home">
                     <Container>
                         <div className="home-parent pt-2">
-                            <div className="d-flex justify-content-end mb-2">
+                            <div className="d-flex justify-content-between align-items-center mb-2">
+                                <span className="text-light">Welcome {state && state.user && (state.user.fname)}!</span>
                                 <Link to="/add-note" className="btn btn-dark">
                                     Add Note
                                 </Link>
@@ -51,12 +52,13 @@ const Home = () => {
                                 {notes &&
                                     notes.map((note) => (
                                         <Col
-                                            lg={3}
-                                            md={2}
-                                            sm={1}
+                                            xl='3'
+                                            lg='4'
+                                            sm='6'
+                                            xs='12'
                                             key={note._id}
                                         >
-                                            <div className="note-parent">
+                                            <div className="note-parent mb-3">
                                                 <Link
                                                     to={`/note/${note._id}`}
                                                     className="text-decoration-none"
