@@ -1,11 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
 import Home from "./components/home/home";
 import SignUp from "./components/signup/signup";
 import SignIn from "./components/signin/signin";
 import VerifyMail from "./components/verifyMail/verifyMail";
 import Profile from "./components/profile/profile";
 import { UserProvider } from "./context";
+import Note from "./components/note/note";
+import AddNote from "./components/addNote/addNote";
+import "./App.css";
 
 function App() {
     return (
@@ -21,6 +23,8 @@ function App() {
                         element={<VerifyMail />}
                     />
                     <Route path="/profile/" element={<Profile />} />
+                    <Route path='/note/:id' element={<Note />} />
+                    <Route path="/add-note" element={<AddNote />} />
                 </Routes>
             </div>
         </UserProvider>

@@ -1,5 +1,5 @@
-.note {
-    border: 2px solid transparent;
+.note-parent .note {
+    border: 1px solid grey;
 }
 
 .note:hover {

@@ -41,22 +41,50 @@ const Home = () => {
             <AppLayout>
                 <div className="home">
                     <Container>
-                        <div className="home-parent pt-4">
+                        <div className="home-parent pt-2">
+                            <div className="d-flex justify-content-end mb-2">
+                                <Link to="/add-note" className="btn btn-dark">
+                                    Add Note
+                                </Link>
+                            </div>
                             <Row>
-                                {notes && (
+                                {notes &&
                                     notes.map((note) => (
-                                        <Col lg={3} md={2} sm={1} key={note._id}>
+                                        <Col
+                                            lg={3}
+                                            md={2}
+                                            sm={1}
+                                            key={note._id}
+                                        >
                                             <div className="note-parent">
-                                                <Link to={`/note/${note._id}`} className="text-decoration-none">
+                                                <Link
+                                                    to={`/note/${note._id}`}
+                                                    className="text-decoration-none"
+                                                >
                                                     <Card className="note p-2 bg-dark text-light">
-                                                        <Card.Title>{note.title.length > 25 ? note.title.slice(0, 22) + '...': note.title}</Card.Title>
-                                                        <Card.Text>{note.description.length > 220 ? note.description.slice(0, 220) + '...' : note.description}</Card.Text>
+                                                        <Card.Title>
+                                                            {note.title.length >
+                                                            25
+                                                                ? note.title.slice(
+                                                                      0,
+                                                                      22
+                                                                  ) + "..."
+                                                                : note.title}
+                                                        </Card.Title>
+                                                        <Card.Text>
+                                                            {note.description
+                                                                .length > 220
+                                                                ? note.description.slice(
+                                                                      0,
+                                                                      220
+                                                                  ) + "..."
+                                                                : note.description}
+                                                        </Card.Text>
                                                     </Card>
                                                 </Link>
                                             </div>
                                         </Col>
-                                    ))
-                                )}
+                                    ))}
                             </Row>
                         </div>
                     </Container>
