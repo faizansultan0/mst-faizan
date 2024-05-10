@@ -7,12 +7,13 @@ import Profile from "./components/profile/profile";
 import { UserProvider } from "./context";
 import Note from "./components/note/note";
 import AddNote from "./components/addNote/addNote";
+import { ToastContainer } from "react-toastify";
 import "./App.css";
 
 function App() {
     return (
         <UserProvider>
-
+            <ToastContainer />
             <div className="App">
                 <Routes>
                     <Route exact path="/" element={<Home />} />
@@ -23,7 +24,7 @@ function App() {
                         element={<VerifyMail />}
                     />
                     <Route path="/profile/" element={<Profile />} />
-                    <Route path='/note/:id' element={<Note />} />
+                    <Route path="/note/:id" element={<Note />} />
                     <Route path="/add-note" element={<AddNote />} />
                 </Routes>
             </div>

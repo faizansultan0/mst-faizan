@@ -77,4 +77,24 @@ const getNote = async (req, res) => {
     }
 };
 
-module.exports = { addNote, getAllNotes, getNote };
+const deleteNote = async (req, res) => {
+    try {
+        const note = await Note.findByIdAndDelete(req.params.id);
+        if (!note) {
+            return res.json({
+                error: "Invalid try",
+            })
+        }
+
+        return res.json({
+            message: "Note deleted Successfully",
+        })
+    } catch (err) {
+        console.log('An error occured while deleting note');
+        return res.json({
+            error: "Error occured while deleting note",
+        })
+    }
+}
+
+module.exports = { addNote, getAllNotes, getNote, deleteNote };

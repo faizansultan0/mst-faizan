@@ -51,7 +51,7 @@ const SignIn = () => {
             // console.log(state);
             navigate("/");
         }
-    }, [state]);
+    }, [state, navigate]);
 
     return (
         <div className="signup">

@@ -26,7 +26,7 @@ const AddNote = () => {
             if (data.error) {
                 toast.error(data.error);
             } else {
-                toast.success("Note added successfully")
+                toast.success("Note added successfully");
                 navigate("/");
             }
         } catch (err) {

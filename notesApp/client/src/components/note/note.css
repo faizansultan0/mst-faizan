@@ -5,3 +5,13 @@
 .description-word {
     font-weight: 400;
 }
+
+.note-page .btn {
+    background-color: rgba(var(--bs-danger-rgb),var(--bs-bg-opacity));
+}
+
+.note-page .card .btn:hover {
+    color: rgba(var(--bs-danger-rgb),var(--bs-bg-opacity));
+    border-color: rgba(var(--bs-danger-rgb),var(--bs-bg-opacity));
+    background-color: transparent!important;
+}

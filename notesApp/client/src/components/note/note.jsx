@@ -1,20 +1,37 @@
 import UserRoute from "../../routes/userRoute";
 import AppLayout from "../../layouts/appLayout";
-import { Container, Card } from "react-bootstrap";
+import { Container, Card, Button } from "react-bootstrap";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../context";
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./note.css";
 
 const Note = () => {
     const [note, setNote] = useState({
+        _id: '',
         title: '',
         description: '',
     });
     const [state] = useContext(UserContext);
-    const {id} = useParams();
+    const { id } = useParams();
+    const navigate = useNavigate();
+
+    const deleteHandle = async (nId) => {
+        try {
+            const { data } = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/note/delete/${nId}`);
+            if (data.error) {
+                toast.error(data.error);
+            } else {
+                toast.success(data.message);
+                navigate('/')
+            }
+        } catch (error) {
+            console.log('Error Occured while deleting note: ', error);
+            toast.error('Could not delete note! Try again')
+        }
+    };
 
     useEffect(() => {
         const getNote = async () => {
@@ -45,6 +62,10 @@ const Note = () => {
                                 <Card.Title className="mb-2"><span className="title-word">Title: </span>{note.title}</Card.Title>
                                 <span className="description-word">Description:</span>
                                 <Card.Text>{note.description}</Card.Text>
+                                <div className="button-div d-flex justify-content-end">
+                                    <Button className="bg-danger px-3" onClick={()=>deleteHandle(note._id)}>Delete</Button>
+                                </div>
+                                    
                             </Card>
                         </div>
                     </Container>

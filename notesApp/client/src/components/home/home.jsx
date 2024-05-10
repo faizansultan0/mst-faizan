@@ -1,6 +1,6 @@
 import UserRoute from "../../routes/userRoute";
 import AppLayout from '../../layouts/appLayout';
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context";
 import { Link } from "react-router-dom";
@@ -10,26 +10,23 @@ import "./home.css";
 
 const Home = () => {
     const [notes, setNotes] = useState([]);
-    const [errMsg, setErrMsg] = useState('');
     const [state] = useContext(UserContext);
 
     useEffect(() => {
         const getAllNotes = async () => {
             try {
-                setErrMsg('');
                 const { data } = await axios.get(
                     `${process.env.REACT_APP_SERVER_URL}/note/all`
                 );
                 if (data.error) {
                     toast.error(data.error);
-                    setErrMsg(data.message);
                 } else {
                     // console.log(data);
                     setNotes(data.notes);
                 }
             } catch (err) {
                 console.log('An error occured while getting all notes: ', err);
-                setErrMsg('An error occured while getting all notes');
+                toast.error('An error occured while getting all notes');
             }
         }
 
