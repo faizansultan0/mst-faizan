@@ -97,4 +97,29 @@ const deleteNote = async (req, res) => {
     }
 }
 
-module.exports = { addNote, getAllNotes, getNote, deleteNote };
+const editNote = async (req, res) => {
+    try {
+        const note = await Note.findByIdAndUpdate(req.body._id, {
+            title: req.body.title,
+            description: req.body.description,
+        });
+
+        if (!note) {
+            return res.json({
+                error: "Could not find note",
+            });
+        }
+
+        return res.json({
+            note: note,
+            message: "Note updated successully",
+        })
+    } catch (err) {
+        console.log('Edit note ERR: ', err);
+        res.json({
+            error: "Could not edit note",
+        })
+    }
+}
+
+module.exports = { addNote, getAllNotes, getNote, deleteNote, editNote };

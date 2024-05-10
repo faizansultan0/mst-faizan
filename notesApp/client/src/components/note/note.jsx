@@ -3,9 +3,9 @@ import AppLayout from "../../layouts/appLayout";
 import { Container, Card, Button } from "react-bootstrap";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../context";
-import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import axios from "axios";
 import "./note.css";
 
 const Note = () => {
@@ -62,8 +62,9 @@ const Note = () => {
                                 <Card.Title className="mb-2"><span className="title-word">Title: </span>{note.title}</Card.Title>
                                 <span className="description-word">Description:</span>
                                 <Card.Text>{note.description}</Card.Text>
-                                <div className="button-div d-flex justify-content-end">
-                                    <Button className="bg-danger px-3" onClick={()=>deleteHandle(note._id)}>Delete</Button>
+                                <div className="button-div d-flex justify-content-between">
+                                    <Link className="btn text-light edit-btn px-3" to={`/note/edit/${note._id}`}>Edit</Link>
+                                    <Button className="delete-btn bg-danger px-3" onClick={()=>deleteHandle(note._id)}>Delete</Button>
                                 </div>
                                     
                             </Card>

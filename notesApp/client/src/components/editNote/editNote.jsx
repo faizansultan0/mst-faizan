@@ -1,37 +1,40 @@
 import UserRoute from "../../routes/userRoute";
 import AppLayout from "../../layouts/appLayout";
 import { Card, Container, Button, Form } from "react-bootstrap";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { UserContext } from "../../context";
 import { toast } from "react-toastify";
 import axios from "axios";
-import "./addNote.css";
+import "./editNote.css";
 
-const AddNote = () => {
+const EditNote = () => {
     const [note, setNote] = useState({
         title: "",
         description: "",
     });
+    const [state] = useContext(UserContext);
+    const { id } = useParams();
     const navigate = useNavigate();
 
     const submitHandle = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post(
-                `${process.env.REACT_APP_SERVER_URL}/note/add`, {
-                    note
-                }
+            const { data } = await axios.put(
+                `${process.env.REACT_APP_SERVER_URL}/note/edit`,
+                note
             );
 
             if (data.error) {
                 toast.error(data.error);
             } else {
-                toast.success("Note added successfully");
-                navigate("/");
+                toast.success(data.message);
+                setNote(data.note);
+                navigate(`/note/${id}`);
             }
         } catch (err) {
-            console.log("Sumitting note ERR: ", err)
-            toast.error("Could not add note");
+            console.log("Updating note ERR: ", err);
+            toast.error("Could not update note");
         }
     };
 
@@ -43,6 +46,26 @@ const AddNote = () => {
         });
     };
 
+        useEffect(() => {
+            const getNote = async () => {
+                try {
+                    const { data } = await axios.get(
+                        `${process.env.REACT_APP_SERVER_URL}/note/${id}`
+                    );
+                    if (data.error) {
+                        toast.error(data.error);
+                    } else {
+                        setNote(data.note);
+                    }
+                } catch (err) {
+                    console.log("An error occured: ", err);
+                    toast.error("An error occured while loading");
+                }
+            };
+
+            if (state && state.token && id) getNote();
+        }, [state, state.token, id]);
+
     return (
         <UserRoute>
             <AppLayout>
@@ -51,9 +74,9 @@ const AddNote = () => {
                         <div className="add-note-page-parent pt-3">
                             <Card className="bg-dark p-3">
                                 <Card.Title className="text-light">
-                                    Add Note
+                                    Edit Note
                                 </Card.Title>
-                                <Form onSubmit={(e)=>submitHandle(e)}>
+                                <Form onSubmit={(e) => submitHandle(e)}>
                                     <Form.Group
                                         className="mb-3"
                                         controlId="formBasicTitle"
@@ -75,15 +98,15 @@ const AddNote = () => {
                                         <Form.Control
                                             name="description"
                                             required
-                                            value={note.description}
                                             as="textarea"
                                             rows={3}
+                                            value={note.description}
                                             placeholder="Description"
                                             max={10000}
                                             onChange={changeHandle}
                                         />
                                     </Form.Group>
-                                    <Button type="submit" >Submit</Button>
+                                    <Button type="submit">Update</Button>
                                 </Form>
                             </Card>
                         </div>
@@ -94,4 +117,4 @@ const AddNote = () => {
     );
 };
 
-export default AddNote;
+export default EditNote;
