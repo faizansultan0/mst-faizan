@@ -32,7 +32,6 @@ const UserRoute = ({children}) => {
 
     state === null && setTimeout(() => {
         navigate('/signin')
-        toast.error('Session Expired');
     }, 1000)
 
     return (ok ? (
