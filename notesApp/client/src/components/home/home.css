@@ -14,3 +14,11 @@
     min-height: 180px;
     font-size: 15px;
 }
+
+.pagination-div .pagination {
+    --bs-pagination-border-color: none;
+}
+
+.pagination-div .active>.page-link, .pagination-div .page-link.active {
+    background-color: rgba(var(--bs-dark-rgb))!important;
+}

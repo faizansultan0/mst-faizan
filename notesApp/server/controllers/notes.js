@@ -2,7 +2,7 @@ const Note = require("../models/note");
 
 const addNote = async (req, res) => {
     // console.log('ADD NOTE REQUEST BY: ', req.auth)
-    console.log('ADD note data: ', req.body);
+    console.log("ADD note data: ", req.body);
     const { title, description } = req.body.note;
     if (title === "") {
         return res.json({
@@ -37,21 +37,45 @@ const addNote = async (req, res) => {
 };
 
 const getAllNotes = async (req, res) => {
+    let page = req.query.page;
     if (!req.auth._id) {
         return res.json({
             error: "Unauthorized Access",
         });
     }
     try {
-        const notes = await Note.find({ createdBy: req.auth._id }).sort({
-            createdAt: -1,
-        });
-
+        const notes = await Note.find({ createdBy: req.auth._id })
+            .skip((page - 1) * 8)
+            .limit(8)
+            .sort({
+                createdAt: -1,
+            });
+        
         return res.json({ notes });
     } catch (err) {
         console.log("An error occured while getting notes: ", err);
         return res.json({
             error: "An error occured while getting all notes",
+        });
+    }
+};
+
+const getTotalNotes = async (req, res) => {
+    if (!req.auth._id) {
+        return res.json({
+            error: "Unauthorized Access",
+        });
+    }
+    try {
+        const totalNotes = await Note.countDocuments({
+            createdBy: req.auth._id,
+        });
+
+        return res.json({ totalNotes });
+    } catch (err) {
+        console.log("An error occured while total notes: ", err);
+        return res.json({
+            error: "An error occured while getting total notes",
         });
     }
 };
@@ -83,19 +107,19 @@ const deleteNote = async (req, res) => {
         if (!note) {
             return res.json({
                 error: "Invalid try",
-            })
+            });
         }
 
         return res.json({
             message: "Note deleted Successfully",
-        })
+        });
     } catch (err) {
-        console.log('An error occured while deleting note');
+        console.log("An error occured while deleting note");
         return res.json({
             error: "Error occured while deleting note",
-        })
+        });
     }
-}
+};
 
 const editNote = async (req, res) => {
     try {
@@ -113,13 +137,20 @@ const editNote = async (req, res) => {
         return res.json({
             note: note,
             message: "Note updated successully",
-        })
+        });
     } catch (err) {
-        console.log('Edit note ERR: ', err);
+        console.log("Edit note ERR: ", err);
         res.json({
             error: "Could not edit note",
-        })
+        });
     }
-}
+};
 
-module.exports = { addNote, getAllNotes, getNote, deleteNote, editNote };
+module.exports = {
+    addNote,
+    getAllNotes,
+    getNote,
+    deleteNote,
+    editNote,
+    getTotalNotes,
+};
