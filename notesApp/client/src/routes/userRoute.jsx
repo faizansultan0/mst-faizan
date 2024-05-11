@@ -3,7 +3,6 @@ import { UserContext } from "../context";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 import axios from "axios";
-import { toast } from "react-toastify";
 
 const UserRoute = ({children}) => {
     const [ok, setOK] = useState(false);
