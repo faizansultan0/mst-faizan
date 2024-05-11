@@ -40,7 +40,7 @@ const Home = () => {
                     <Container>
                         <div className="home-parent pt-2">
                             <div className="d-flex justify-content-between align-items-center mb-2">
-                                <span className="text-light">Welcome {state && state.user && (state.user.fname)}!</span>
+                                <span className="text-light">Welcome <b>{state && state.user && (state.user.fname)}</b>!</span>
                                 <Link to="/add-note" className="btn btn-dark">
                                     Add Note
                                 </Link>
