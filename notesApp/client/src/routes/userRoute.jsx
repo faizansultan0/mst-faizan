@@ -28,7 +28,7 @@ const UserRoute = ({children}) => {
         }
 
         if (state && state.token) getCurrentUser();
-    }, [state])
+    }, [state, navigate])
 
     state === null && setTimeout(() => {
         navigate('/signin')
