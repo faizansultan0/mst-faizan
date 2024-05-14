@@ -19,6 +19,16 @@ const Profile = () => {
                                 <Card.Title className="mb-3 text-center">
                                     Profile
                                 </Card.Title>
+                                {state && state.user && state.user.image ? (
+                                    <div className="img-div">
+                                        <img src={state.user.image} alt={state.user.fname + state.user.lname} className="img" />
+                                    </div>
+                                ) : (
+                                        <div className="img-div">
+                                            <spam className="img-txt">{state.user.fname && (state.user.fname[0])}</spam>
+                                    </div>
+                                )}
+
                                 <Card.Subtitle className="mb-3">
                                     {state &&
                                         state.user &&
