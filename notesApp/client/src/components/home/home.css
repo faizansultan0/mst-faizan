@@ -1,9 +1,37 @@
+.note-parent {
+    position: relative;
+}
+
 .note-parent .note {
     border: 1px solid grey;
 }
 
 .note:hover {
     border-color: white;
+}
+
+.trash-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: inline-block;
+    border: none;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 24px;
+    z-index: 100;
+    transition: all 0.2s ease-in;
+}
+
+.trash-btn:hover {
+    opacity: 0.7;
+}
+
+.note .trash-btn img {
+    width: 15px;
 }
 
 .note .card-title {
