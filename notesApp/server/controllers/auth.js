@@ -3,8 +3,14 @@ const Token = require("../models/token");
 const bcrypt = require("bcrypt");
 const sendEmail = require("../helpers/sendmail");
 const crypto = require("crypto");
-const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+const cloudinary = require("cloudinary");
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET,
+});
 
 const signup = async (req, res) => {
     const { fname, lname, email, password } = req.body.userData;
@@ -54,6 +60,50 @@ const signup = async (req, res) => {
         console.log("Register User Error: ", err);
     }
 };
+
+const uploadImage = async (req, res) => {
+    try {
+        const result = await cloudinary.v2.uploader.upload(req.files.image.path);
+        res.json({
+            url: result.secure_url,
+        })
+    } catch (err) {
+        console.log(err);
+        res.json({
+            error: "Could not upload Image",
+        })
+    }
+}
+
+const updateUser = async (req, res) => {
+    try {
+        const { _id, image, fname, lname } = req.body.user;
+        const user = await User.findByIdAndUpdate(_id, {
+            image: image,
+            fname: fname,
+            lname: lname,
+        }, {
+            new: true
+        })
+        // console.log(user);
+
+        if (!user) {
+            return res.json({
+                error: "Can't update profile",
+            })
+        }
+
+        user.password = undefined;
+        return res.status(200).json({
+            user,
+        })
+    } catch (err) {
+        console.log('PROFILE UPDATE ERR: ', err);
+        res.json({
+            error: "Can't update profile",
+        })
+    }
+}
 
 const verifyToken = async (req, res) => {
     try {
@@ -157,4 +207,11 @@ const currentUser = async (req, res) => {
     }
 };
 
-module.exports = { signup, verifyToken, signin, currentUser };
+module.exports = {
+    signup,
+    verifyToken,
+    signin,
+    currentUser,
+    updateUser,
+    uploadImage,
+};

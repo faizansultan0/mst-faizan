@@ -1,6 +1,6 @@
 import UserRoute from "../../routes/userRoute";
 import AppLayout from "../../layouts/appLayout";
-import { Container, Row, Col, Card, Pagination } from "react-bootstrap";
+import { Container, Row, Col, Card, Pagination, Form } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context";
 import { Link } from "react-router-dom";
@@ -13,6 +13,9 @@ const Home = () => {
     const [totalNotes, setTotalNotes] = useState(0);
     const [active, setActive] = useState(1);
     const [state] = useContext(UserContext);
+
+    // Search Notes
+    const [searchQuery, setSearchQuery] = useState('');
 
     const items = [];
     for (let number = 1; number <= Math.ceil(totalNotes / 8); number++) {
@@ -41,8 +44,8 @@ const Home = () => {
             }
         };
 
-        if (state && state.token) getAllNotes();
-    }, [state, active]);
+        if (state && state.token && !searchQuery) getAllNotes();
+    }, [state, active, searchQuery]);
 
     useEffect(() => {
         const getTotalNotes = async () => {
@@ -55,7 +58,7 @@ const Home = () => {
                 } else {
                     // console.log(data);
                     setTotalNotes(data.totalNotes);
-                    console.log('Total Notes: ', data.totalNotes);
+                    // console.log('Total Notes: ', data.totalNotes);
                 }
             } catch (err) {
                 console.log(
@@ -66,8 +69,38 @@ const Home = () => {
             }
         };
 
-        if (state && state.token) getTotalNotes();
-    }, [state]);
+        if (state && state.token && !searchQuery) getTotalNotes();
+    }, [state, searchQuery]);
+
+    const getSearchedNotes = async () => {
+        try {
+            const { data } = await axios.get(`${process.env.REACT_APP_SERVER_URL}/note/search/${searchQuery}/${active}`);
+            if (data.error) {
+                toast.error(data.error);
+            } else {
+                setNotes(data.notes);
+                setTotalNotes(data.total);
+            }
+
+        } catch (err) {
+            console.log(`Search Query ERR: `, err);
+        }
+    }
+
+    useEffect(() => {
+        if (state && state.token && searchQuery) {
+            setActive(1);
+            getSearchedNotes()
+        };
+    }, [state, searchQuery])
+
+    useEffect(() => {
+        if(searchQuery)getSearchedNotes();
+    }, [active]);
+
+    const searchHandle = (e) => {
+        setSearchQuery(e.target.value);
+    }
 
     return (
         <UserRoute>
@@ -85,6 +118,19 @@ const Home = () => {
                                     </b>
                                     !
                                 </span>
+                                <Form>
+                                    <Form.Group
+                                        className="mb-3"
+                                        controlId="exampleForm.ControlInput1"
+                                    >
+                                        <Form.Control
+                                            type="search"
+                                            placeholder="Search notes"
+                                            onChange={searchHandle}
+                                            value={searchQuery}
+                                        />
+                                    </Form.Group>
+                                </Form>
                                 <Link to="/add-note" className="btn btn-dark">
                                     Add Note
                                 </Link>

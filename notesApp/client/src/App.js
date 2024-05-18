@@ -10,6 +10,7 @@ import AddNote from "./components/addNote/addNote";
 import EditNote from "./components/editNote/editNote";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
+import ProfileUpdate from "./components/updateProfile/updateProfile";
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                         element={<VerifyMail />}
                     />
                     <Route path="/profile/" element={<Profile />} />
+                    <Route path="/profile/update" element={<ProfileUpdate />} />
                     <Route path="/note/:id" element={<Note />} />
                     <Route path="/note/edit/:id" element={<EditNote />} />
                     <Route path="/add-note" element={<AddNote />} />

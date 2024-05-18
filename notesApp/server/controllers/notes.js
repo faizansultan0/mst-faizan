@@ -50,7 +50,7 @@ const getAllNotes = async (req, res) => {
             .sort({
                 createdAt: -1,
             });
-        
+
         return res.json({ notes });
     } catch (err) {
         console.log("An error occured while getting notes: ", err);
@@ -146,6 +146,33 @@ const editNote = async (req, res) => {
     }
 };
 
+const searchNotes = async (req, res) => {
+    // console.log('Search Query: ', req.params.query);
+    const { query, page } = req.params;
+
+    try {
+        const notes = await Note.find({
+            title: { $regex: query, $options: "i" },
+        })
+            .skip((page - 1) * 8)
+            .limit(8)
+            .sort({createdAt: -1});
+
+        const totalNotes = await Note.countDocuments({
+            title: {$regex: query, $options: "i"},
+        });
+        res.json({
+            notes,
+            total: totalNotes,
+        });
+    } catch (err) {
+        res.json({
+            error: "Could not search notes",
+        });
+        console.log("Search Notes ERR: ", err);
+    }
+};
+
 module.exports = {
     addNote,
     getAllNotes,
@@ -153,4 +180,5 @@ module.exports = {
     deleteNote,
     editNote,
     getTotalNotes,
+    searchNotes,
 };

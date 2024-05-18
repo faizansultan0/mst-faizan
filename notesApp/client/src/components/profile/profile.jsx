@@ -1,13 +1,22 @@
 import UserRoute from "../../routes/userRoute";
 import { Container, Card } from "react-bootstrap";
-import "./profile.css";
 import AppLayout from "../../layouts/appLayout";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../../context";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import moment from "moment";
+import "./profile.css";
 
 const Profile = () => {
+    const [user, setUser] = useState({}); 
     const [state] = useContext(UserContext);
+
+    useEffect(() => {
+        if (state && state.user) {
+            setUser(state.user);
+        }
+    }, [state])
 
     return (
         <UserRoute>
@@ -19,34 +28,34 @@ const Profile = () => {
                                 <Card.Title className="mb-3 text-center">
                                     Profile
                                 </Card.Title>
-                                {state && state.user && state.user.image ? (
+                                {user && user.image ? (
                                     <div className="img-div">
-                                        <img src={state.user.image} alt={state.user.fname + state.user.lname} className="img" />
+                                        <img src={user.image} alt={user.fname + user.lname} className="img" />
                                     </div>
                                 ) : (
                                         <div className="img-div">
-                                            <spam className="img-txt">{state.user.fname && (state.user.fname[0])}</spam>
+                                            <span className="img-txt">{user.fname && (user.fname[0])}</span>
                                     </div>
                                 )}
 
                                 <Card.Subtitle className="mb-3">
-                                    {state &&
-                                        state.user &&
-                                        state.user.fname +
+                                    {
+                                        user &&
+                                        user.fname +
                                             " " +
-                                            state.user.lname}
+                                            user.lname}
                                 </Card.Subtitle>
                                 <Card.Text className="mb-2">
-                                    {state && state.user && state.user.email}
+                                    {user && user.email}
                                 </Card.Text>
                                 <Card.Text className="text-sm">
                                     Joined{" "}
                                     {moment(
-                                        state &&
-                                            state.user &&
-                                            state.user.createdAt
+                                           user &&
+                                           user.createdAt
                                     ).fromNow()}
                                 </Card.Text>
+                                <Link className="btn" to='/profile/update'>Update Profile</Link>
                             </Card>
                         </div>
                     </Container>
