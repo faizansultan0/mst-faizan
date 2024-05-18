@@ -1,6 +1,6 @@
 import UserRoute from "../../routes/userRoute";
 import AppLayout from "../../layouts/appLayout";
-import { Container, Row, Col, Card, Pagination, Form } from "react-bootstrap";
+import { Container, Row, Col, Card, Pagination, Form, } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context";
 import { Link } from "react-router-dom";
@@ -118,11 +118,12 @@ const Home = () => {
                                     </b>
                                     !
                                 </span>
-                                <Form>
-                                    <Form.Group
-                                        className="mb-3"
-                                        controlId="exampleForm.ControlInput1"
-                                    >
+                                <Form
+                                    onSubmit={(e) => {
+                                        e.preventDefault();
+                                    }}
+                                >
+                                    <Form.Group controlId="exampleForm.ControlInput1">
                                         <Form.Control
                                             type="search"
                                             placeholder="Search notes"
