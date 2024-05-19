@@ -26,7 +26,7 @@ const ProfileUpdate = () => {
                 _id: state.user._id,
             });
         }
-    }, []);
+    }, [state]);
 
     const handleChange = (e) => {
         setUser({
@@ -36,18 +36,24 @@ const ProfileUpdate = () => {
     };
 
     const handleImage = async (e) => {
-        const file = e.target.files[0];
-
+        setUser((prevUser) => ({ ...prevUser, image: e.target.files[0] }));
     };
 
     const submitHandle = async (e) => {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append("image", user.image);
+        formData.append("fname", user.fname);
+        formData.append("lname", user.lname);
 
         try {
             const { data } = await axios.put(
                 `${process.env.REACT_APP_SERVER_URL}/user/update`,
+                formData,
                 {
-                    user,
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
                 }
             );
 
@@ -97,7 +103,7 @@ const ProfileUpdate = () => {
                             {state && state.user && state.user.image ? (
                                 <div className="img-div">
                                     <img
-                                        src={state.user.image}
+                                        src={process.env.REACT_APP_SERVER_URL + state.user.image}
                                         alt={
                                             state.user.fname + state.user.lname
                                         }
@@ -114,13 +120,17 @@ const ProfileUpdate = () => {
                             )}
                         </div>
 
-                        <Form onSubmit={submitHandle} className="mb-2">
+                        <Form
+                            onSubmit={submitHandle}
+                            encType="multipart/form-data"
+                            className="mb-2"
+                        >
                             <div className="img-input-div mb-2">
                                 <input
                                     onChange={handleImage}
-                                    name='photo'
+                                    name="image"
                                     type="file"
-                                    accept="images/*"
+                                    accept=".png, .jpg, .jpeg"
                                 />
                             </div>
                             <Row>

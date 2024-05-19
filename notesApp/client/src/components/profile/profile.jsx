@@ -30,32 +30,37 @@ const Profile = () => {
                                 </Card.Title>
                                 {user && user.image ? (
                                     <div className="img-div">
-                                        <img src={user.image} alt={user.fname + user.lname} className="img" />
+                                        <img
+                                            src={
+                                                process.env
+                                                    .REACT_APP_SERVER_URL +
+                                                state.user.image
+                                            }
+                                            alt={user.fname + user.lname}
+                                            className="img"
+                                        />
                                     </div>
                                 ) : (
-                                        <div className="img-div">
-                                            <span className="img-txt">{user.fname && (user.fname[0])}</span>
+                                    <div className="img-div">
+                                        <span className="img-txt">
+                                            {user.fname && user.fname[0]}
+                                        </span>
                                     </div>
                                 )}
 
                                 <Card.Subtitle className="mb-3">
-                                    {
-                                        user &&
-                                        user.fname +
-                                            " " +
-                                            user.lname}
+                                    {user && user.fname + " " + user.lname}
                                 </Card.Subtitle>
                                 <Card.Text className="mb-2">
                                     {user && user.email}
                                 </Card.Text>
                                 <Card.Text className="text-sm">
                                     Joined{" "}
-                                    {moment(
-                                           user &&
-                                           user.createdAt
-                                    ).fromNow()}
+                                    {moment(user && user.createdAt).fromNow()}
                                 </Card.Text>
-                                <Link className="btn" to='/profile/update'>Update Profile</Link>
+                                <Link className="btn" to="/profile/update">
+                                    Update Profile
+                                </Link>
                             </Card>
                         </div>
                     </Container>

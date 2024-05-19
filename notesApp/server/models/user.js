@@ -16,7 +16,8 @@ const userSchema = new Schema(
             unique: true,
         },
         image: {
-            url: String,
+            type: String,
+            default: '',
         },
         verified: {
             type: Boolean,

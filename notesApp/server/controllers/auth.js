@@ -4,6 +4,8 @@ const bcrypt = require("bcrypt");
 const sendEmail = require("../helpers/sendmail");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
+const path = require('path');
+const fs = require('fs');
 
 
 const signup = async (req, res) => {
@@ -56,31 +58,40 @@ const signup = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-    try {
-        const { _id, image, fname, lname } = req.body.user;
-        const user = await User.findByIdAndUpdate(_id, {
-            image: image,
-            fname: fname,
-            lname: lname,
-        }, {
-            new: true
-        })
-        // console.log(user);
+    // console.log("Req Body UPDATE USER: ", req.body);
+    // console.log('REQ FILE UPDATE USER: ', req.file);
+    // console.log('REQ auth: ', req.auth._id)
+    try {   
+        const { fname, lname } = req.body;
+        const { _id } = req.auth;
+        const updateData = { fname, lname };
 
-        if (!user) {
-            return res.json({
-                error: "Can't update profile",
-            })
+        const prevUser = await User.findById(_id);
+        if (prevUser && prevUser.image) {
+            const imagePath = path.join(__dirname, "..", prevUser.image);
+            if(fs.existsSync(imagePath)) fs.unlinkSync(imagePath);
         }
+
+        if (req.file) {
+            updateData.image = `/uploads/${req.file.filename}`;
+        }
+
+        const user = await User.findByIdAndUpdate(_id, updateData, { new: true });
+        if (!user) {
+            return res.status(400).json({
+                error: "Cannot update profile",
+            })
+        };
 
         user.password = undefined;
         return res.status(200).json({
             user,
         })
+
     } catch (err) {
-        console.log('PROFILE UPDATE ERR: ', err);
+        console.log(err);
         res.json({
-            error: "Can't update profile",
+            error: ('Could not update')
         })
     }
 }
