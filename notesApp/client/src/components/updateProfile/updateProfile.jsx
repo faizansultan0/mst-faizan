@@ -137,8 +137,8 @@ const ProfileUpdate = () => {
                             encType="multipart/form-data"
                             className="mb-2"
                         >
-                            <div className="d-flex justify-content-between  mb-2">
-                                <div className="img-input-div">
+                            <div className="d-flex justify-content-between flex-wrap mb-2">
+                                <div className="img-input-div mb-sm-0 mb-2">
                                     <input
                                         onChange={handleImage}
                                         name="image"
