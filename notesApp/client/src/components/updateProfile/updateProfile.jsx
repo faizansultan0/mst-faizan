@@ -38,19 +38,6 @@ const ProfileUpdate = () => {
     const handleImage = async (e) => {
         const file = e.target.files[0];
 
-        const formData = new FormData();
-        formData.append('image', file);
-
-        try {
-            const { data } = await axios.post(
-                `${process.env.REACT_APP_SERVER_URL}/user/upload-image`,
-                formData
-            );
-            setUser({ ...user, image: data.url });
-        } catch (err) {
-            console.log('Image upload error', err);
-            toast.error('Could not uplload image');
-        }
     };
 
     const submitHandle = async (e) => {
@@ -131,6 +118,7 @@ const ProfileUpdate = () => {
                             <div className="img-input-div mb-2">
                                 <input
                                     onChange={handleImage}
+                                    name='photo'
                                     type="file"
                                     accept="images/*"
                                 />
