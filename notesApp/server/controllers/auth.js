@@ -4,13 +4,7 @@ const bcrypt = require("bcrypt");
 const sendEmail = require("../helpers/sendmail");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
-const cloudinary = require("cloudinary");
 
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_NAME,
-    api_key: process.env.CLOUDINARY_KEY,
-    api_secret: process.env.CLOUDINARY_SECRET,
-});
 
 const signup = async (req, res) => {
     const { fname, lname, email, password } = req.body.userData;
@@ -61,20 +55,6 @@ const signup = async (req, res) => {
     }
 };
 
-const uploadImage = async (req, res) => {
-    try {
-        const result = await cloudinary.v2.uploader.upload(req.files.image.path);
-        res.json({
-            url: result.secure_url,
-        })
-    } catch (err) {
-        console.log(err);
-        res.json({
-            error: "Could not upload Image",
-        })
-    }
-}
-
 const updateUser = async (req, res) => {
     try {
         const { _id, image, fname, lname } = req.body.user;
@@ -123,7 +103,7 @@ const verifyToken = async (req, res) => {
             });
         }
 
-        const newUser = await User.findByIdAndUpdate(id, { verified: true });
+        const newUser = await User.findByIdAndUpdate(id, { verified: true }, {new: true});
         if (!newUser) {
             return res.json({ error: "Failed to update user" });
         }
@@ -213,5 +193,4 @@ module.exports = {
     signin,
     currentUser,
     updateUser,
-    uploadImage,
 };

@@ -6,7 +6,6 @@ import "./verifyMail.css";
 const VerifyMail = () => {
     const [successMsg, setSuccessMsg] = useState("");
     const [errMsg, setErrMsg] = useState("");
-    const [reqSent, setReqSent] = useState(false);
     const { id, token } = useParams();
 
     useEffect(() => {
@@ -14,20 +13,18 @@ const VerifyMail = () => {
             try {
                 setSuccessMsg('');
                 setErrMsg('');
-                if (!id || !token || reqSent) {
+                if (!id || !token) {
                     return;
                 }
                 const { data } = await axios.get(
                     `${process.env.REACT_APP_SERVER_URL}/user/${id}/verify/${token}`
                 );
-                // console.log(data);
                 if (data.error) {
                     setSuccessMsg('');
                     setErrMsg(data.error);
                 } else {
                     setErrMsg('');
                     setSuccessMsg(data.message);
-                    setReqSent(true);
                 }
             } catch (err) {
                 console.log("Error occured while verifying mail: ", err);
@@ -37,7 +34,7 @@ const VerifyMail = () => {
         };
 
         verify();
-    }, [id, token, reqSent]);
+    }, [id, token]);
     return (
         <div className="verify-parent">
             {successMsg && (

@@ -81,7 +81,6 @@ const getTotalNotes = async (req, res) => {
 };
 
 const getNote = async (req, res) => {
-    console.log("Req params: ", req.params);
     if (!req.auth._id) {
         return res.json({
             error: "Unauthorized Access",
