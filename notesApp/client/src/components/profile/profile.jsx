@@ -43,7 +43,7 @@ const Profile = () => {
                                 ) : (
                                     <div className="img-div">
                                         <span className="img-txt">
-                                            {user.fname && user.fname[0]}
+                                            {(user && user.fname) && (user.fname[0])}
                                         </span>
                                     </div>
                                 )}

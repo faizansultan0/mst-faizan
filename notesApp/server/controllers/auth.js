@@ -74,6 +74,8 @@ const updateUser = async (req, res) => {
 
         if (req.file) {
             updateData.image = `/uploads/${req.file.filename}`;
+        } else {
+            updateData.image = '';
         }
 
         const user = await User.findByIdAndUpdate(_id, updateData, { new: true });

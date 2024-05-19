@@ -14,6 +14,7 @@ const ProfileUpdate = () => {
         _id: "",
     });
     const [state, setState] = useContext(UserContext);
+    const [askedRm, setAskedRm] = useState(false);
 
     const navigate = useNavigate();
 
@@ -37,6 +38,11 @@ const ProfileUpdate = () => {
 
     const handleImage = async (e) => {
         setUser((prevUser) => ({ ...prevUser, image: e.target.files[0] }));
+    };
+
+    const removeImgHandle = () => {
+        setAskedRm(true);
+        setUser({ ...user, image: "" })
     };
 
     const submitHandle = async (e) => {
@@ -100,10 +106,16 @@ const ProfileUpdate = () => {
                             Profile Update
                         </Card.Title>
                         <div className="d-flex justify-content-center">
-                            {state && state.user && state.user.image ? (
+                            {state &&
+                            state.user &&
+                            state.user.image &&
+                            !askedRm ? (
                                 <div className="img-div">
                                     <img
-                                        src={process.env.REACT_APP_SERVER_URL + state.user.image}
+                                        src={
+                                            process.env.REACT_APP_SERVER_URL +
+                                            state.user.image
+                                        }
                                         alt={
                                             state.user.fname + state.user.lname
                                         }
@@ -125,13 +137,22 @@ const ProfileUpdate = () => {
                             encType="multipart/form-data"
                             className="mb-2"
                         >
-                            <div className="img-input-div mb-2">
-                                <input
-                                    onChange={handleImage}
-                                    name="image"
-                                    type="file"
-                                    accept=".png, .jpg, .jpeg"
-                                />
+                            <div className="d-flex justify-content-between  mb-2">
+                                <div className="img-input-div">
+                                    <input
+                                        onChange={handleImage}
+                                        name="image"
+                                        type="file"
+                                        accept=".png, .jpg, .jpeg"
+                                    />
+                                </div>
+                                <button
+                                    type="button"
+                                    className="btn"
+                                    onClick={removeImgHandle}
+                                >
+                                    Remove Picture
+                                </button>
                             </div>
                             <Row>
                                 <Col md={6}>
