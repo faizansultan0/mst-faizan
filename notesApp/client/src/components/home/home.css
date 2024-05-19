@@ -3,11 +3,13 @@
 }
 
 .note-parent .note {
-    border: 1px solid grey;
+    border: 1px solid grey!important;
+    background: #1e1e20;
+    transition: all 0.1s ease-out;
 }
 
 .note:hover {
-    border-color: white;
+    background: #181818;
 }
 
 .trash-btn {

@@ -1,7 +1,7 @@
 import UserRoute from "../../routes/userRoute";
 import AppLayout from "../../layouts/appLayout";
 import { Container, Row, Col, Card, Pagination, Form } from "react-bootstrap";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import TrashIcon from "../../assets/trash-icon.svg";
 import { UserContext } from "../../context";
 import { Link } from "react-router-dom";
@@ -48,8 +48,10 @@ const Home = () => {
         }
     };
 
+    
     useEffect(() => {
         if (state && state.token && !searchQuery) getAllNotes();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state, active, searchQuery]);
 
     const getTotalNotes = async () => {
@@ -65,10 +67,7 @@ const Home = () => {
                 // console.log('Total Notes: ', data.totalNotes);
             }
         } catch (err) {
-            console.log(
-                "An error occured while getting total notes: ",
-                err
-            );
+            console.log("An error occured while getting total notes: ", err);
             toast.error("An error occured while getting total notes");
         }
     };
@@ -99,10 +98,12 @@ const Home = () => {
             setActive(1);
             getSearchedNotes();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state, searchQuery]);
 
     useEffect(() => {
         getSearchedNotes();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [active]);
 
     const searchHandle = (e) => {
@@ -176,7 +177,7 @@ const Home = () => {
                                                     to={`/note/${note._id}`}
                                                     className="text-decoration-none"
                                                 >
-                                                    <Card className="note p-2 bg-dark text-light">
+                                                    <Card className="note p-2 text-light">
                                                         <Card.Title>
                                                             {note.title.length >
                                                             25
@@ -197,20 +198,18 @@ const Home = () => {
                                                         </Card.Text>
                                                     </Card>
                                                 </Link>
-                                                        <button
-                                                            type="button"
-                                                            className="trash-btn bg-danger"
-                                                            onClick={() =>
-                                                                deleteHandle(
-                                                                    note._id
-                                                                )
-                                                            }
-                                                        >
-                                                            <img
-                                                                src={TrashIcon}
-                                                                alt="Trash Icon"
-                                                            />
-                                                        </button>
+                                                <button
+                                                    type="button"
+                                                    className="trash-btn bg-danger"
+                                                    onClick={() =>
+                                                        deleteHandle(note._id)
+                                                    }
+                                                >
+                                                    <img
+                                                        src={TrashIcon}
+                                                        alt="Trash Icon"
+                                                    />
+                                                </button>
                                             </div>
                                         </Col>
                                     ))}
