@@ -1,7 +1,7 @@
 import UserRoute from "../../routes/userRoute";
 import AppLayout from "../../layouts/appLayout";
 import { Container, Row, Col, Card, Pagination, Form } from "react-bootstrap";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import TrashIcon from "../../assets/trash-icon.svg";
 import { UserContext } from "../../context";
 import { Link } from "react-router-dom";

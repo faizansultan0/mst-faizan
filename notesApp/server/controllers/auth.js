@@ -92,9 +92,31 @@ const updateUser = async (req, res) => {
 
     } catch (err) {
         console.log(err);
-        res.json({
-            error: ('Could not update')
-        })
+        // If an error occurs, check if a file was uploaded and delete it
+        if (req.file) {
+            const filePath = path.join(
+                __dirname,
+                "..",
+                "uploads",
+                req.file.filename
+            );
+            if (fs.existsSync(filePath)) {
+                fs.unlink(filePath, (unlinkErr) => {
+                    if (unlinkErr) {
+                        console.error(
+                            "Failed to delete uploaded file:",
+                            unlinkErr
+                        );
+                    } else {
+                        console.log("Uploaded file deleted due to error");
+                    }
+                });
+            }
+        }
+
+        res.status(500).json({
+            error: "Could not update profile",
+        });
     }
 }
 
