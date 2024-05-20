@@ -55,6 +55,7 @@ function App() {
         }
         setDatesInCMonth(newDates);
         setCmonth(months[currentMonth]);
+        // eslint-disable-next-line
     }, [currentMonth]);
 
     return (
