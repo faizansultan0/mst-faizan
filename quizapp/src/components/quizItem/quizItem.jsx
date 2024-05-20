@@ -40,6 +40,7 @@ const QuizItem = ({
     useEffect(() => {
         setSelected("");
         shuffleOptions();
+        // eslint-disable-next-line
     }, [question]);
 
     return (
