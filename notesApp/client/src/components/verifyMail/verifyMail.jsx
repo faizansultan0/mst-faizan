@@ -11,8 +11,8 @@ const VerifyMail = () => {
     useEffect(() => {
         const verify = async () => {
             try {
-                setSuccessMsg('');
-                setErrMsg('');
+                setSuccessMsg("");
+                setErrMsg("");
                 if (!id || !token) {
                     return;
                 }
@@ -20,15 +20,15 @@ const VerifyMail = () => {
                     `${process.env.REACT_APP_SERVER_URL}/user/${id}/verify/${token}`
                 );
                 if (data.error) {
-                    setSuccessMsg('');
+                    setSuccessMsg("");
                     setErrMsg(data.error);
                 } else {
-                    setErrMsg('');
+                    setErrMsg("");
                     setSuccessMsg(data.message);
                 }
             } catch (err) {
                 console.log("Error occured while verifying mail: ", err);
-                setSuccessMsg('');
+                setSuccessMsg("");
                 setErrMsg("An error occurred. Please try again later.");
             }
         };
@@ -39,10 +39,10 @@ const VerifyMail = () => {
         <div className="verify-parent">
             {successMsg && (
                 <div className="card">
-                    <p className="text-success">
-                        {successMsg}
-                    </p>
-                    <Link to="/login" className="btn">Login</Link>
+                    <p className="text-success">{successMsg}</p>
+                    <Link to="/signin" className="btn">
+                        Sign in
+                    </Link>
                 </div>
             )}
 
