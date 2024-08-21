@@ -1,0 +1,233 @@
+.header {
+    background-color: #1F0969;
+    padding: 16px 0;
+    box-shadow: 0px 3px 6px #00000029;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo, .header .logo-a {
+    display: inline-block;
+}
+
+.header .logo-img {
+    width: 227px;
+}
+
+.header .right-part {
+    display: flex;
+    gap: 37px;
+}
+
+.header .navbar .navbar-nav .nav-link {
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    margin: 0 25px;
+    padding: 0;
+    position: relative;
+}
+
+.header .navbar .navbar-nav .nav-link-txt:hover {
+    display: inline-block;
+    transition: all 0.1s ease-in;
+    transform: translateY(-4px);
+}
+
+.header .navbar .navbar-nav .nav-link::after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    background-color: white;
+    width: 100%;
+    transition: all 0.1s linear;
+}
+
+.header .navbar .navbar-nav .nav-link:hover::after {
+    height: 1px;
+}
+
+.buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.button {
+    font-size: 18px;
+    padding: 16px 30px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    border-radius: 4px;
+    border: none;
+    transition: all 0.1s ease-out;
+}
+
+.header .button:first-child:hover {
+    background-color: #FFC427;
+}
+
+.header .button:nth-child(2) {
+    background-color: #FFC427;
+}
+
+
+@media screen and (max-width: 1800px) {
+    .header {
+        padding: 12px 0;
+    }
+    .header .logo-img {
+        width: 160px;
+    }
+
+    .header .right-part {
+        display: flex;
+        gap: 10px;
+    }
+
+    .header .navbar .navbar-nav .nav-link {
+        margin: 0 16px;
+        font-size: 15px;
+    }
+
+    .button {
+        padding: 13px 22px;
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 1399.9px) {
+    .header {
+        padding: 10px 0;
+    }
+
+    .header .logo-img {
+        width: 140px;
+    }
+
+    .header .navbar .navbar-nav .nav-link {
+        margin: 0 12px;
+        font-size: 13px;
+    }
+
+    .header .right-part {
+        gap: 4px;
+    }
+
+    .button {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 1199.9px) {
+    .header .logo-img {
+        width: 126px;
+    }
+
+    .header .navbar .navbar-nav .nav-link {
+        margin: 0 10px;
+        font-size: 12px;
+    }
+
+    .button {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    .header .right-part {
+        gap: 0px;
+    }
+}
+
+@media screen and (max-width: 991.9px) {
+    .header {
+        position: relative;
+    }
+
+    .header .right-part {
+        flex-direction: row-reverse;
+    }
+
+    .header .navbar {
+        padding: 0;
+        position: static;
+    }
+
+    .header .navbar-toggler {
+        padding: 0;
+        border: 0;
+    }
+
+    .header .navbar-toggler:focus {
+        box-shadow: none;
+    }
+
+    .header .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #1F0969;
+    }
+
+    .header .navbar .navbar-nav .nav-link {
+        font-size: 15px;
+        font-weight: 500;
+        padding: 6px 26px;
+    }
+
+    .header .navbar .navbar-nav .nav-link-txt {
+        width: 100%;
+        display: block;
+        border-bottom: 1px solid #FFC427;
+    }
+
+    .header .navbar .navbar-nav .nav-link:hover::after {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 767.9px) {
+    .header .navbar .navbar-nav .nav-link {
+        padding: 5px 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header .logo-img {
+        width: 106px;
+    }
+
+
+    .button {
+        font-size: 10px;
+        padding: 7px 12px;
+    }
+
+    .header .navbar .navbar-nav .nav-link {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .header .logo-img {
+        width: 76px;
+    }
+
+    .header .navbar .container {
+        padding: 0 2px
+    }
+
+    .button {
+        padding: 4px;
+    }
+}

@@ -1,0 +1,184 @@
+.faqs {
+    padding: 106px 0;
+}
+
+.faqs .heading {
+    font-size: 42px;
+    margin-bottom: 52px;
+}
+
+.faqs .accordion-item {
+    margin-bottom: 12px;
+    box-shadow: 0px 3px 6px #00000012;
+    border: none;
+}
+
+.faqs .accordion-button {
+    font-size: 16px;
+}
+
+.faqs .accordion-button:focus {
+    box-shadow: none;
+}
+
+.faqs .accordion-button:not(.collapsed) {
+    font-size: 16px;
+    font-weight: 600;
+    color: #080d42;
+    background-color: white;
+    box-shadow: none;
+}
+
+.faqs .accordion-item {
+    position: relative;
+}
+
+.faqs .accordion-button::before,
+.faqs .collapse::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    width: 4px;
+    height: 100%;
+}
+
+.faqs .accordion-button::before {
+    background-color: #dcdcdc;
+}
+
+.faqs .collapse::before {
+    background-color: #ffc427;
+}
+
+.faqs .accordion-button:not(.collapsed)::before {
+    background-color: #ffc427;
+}
+
+.faqs .card {
+    box-shadow: 0px 0px 26px #0000001a;
+    border-radius: 31px;
+    padding: 38px;
+    height: 100%;
+    border: none;
+}
+
+.faqs .contact-heading {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 39px;
+}
+
+.faqs .input-group {
+    border: 1px solid #d7d7d7;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+.faqs .input-group-text {
+    border: none;
+    padding: 16px;
+    font-size: 19px;
+    color: #818181;
+}
+
+.faqs .form-control {
+    border: none;
+}
+
+.faqs .input-group > .form-control:focus {
+    box-shadow: none;
+}
+
+.faqs textarea.form-control {
+    border: 1px solid #d7d7d7;
+    min-height: 163px;
+}
+
+.faqs .button-div {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.faqs .button {
+    background-color: #ffc427;
+    border: 1px solid transparent;
+}
+
+.faqs .button:hover {
+    color: #040e3a;
+    background-color: white;
+    border-color: #080d42;
+}
+
+@media screen and (max-width: 1800px) {
+    .faqs {
+        padding: 78px 0;
+    }
+
+    .faqs .heading {
+        font-size: 34px;
+        margin-bottom: 36px;
+    }
+
+    .faqs .contact-heading {
+        font-size: 22px;
+        margin-bottom: 22px;
+    }
+}
+
+@media screen and (max-width: 1199.9px) {
+    .faqs {
+        padding: 70px 0;
+    }
+
+    .faqs .heading {
+        font-size: 28px;
+        margin-bottom: 26px;
+    }
+
+    .faqs .accordion .accordion-item .accordion-button:not(.collapsed) {
+        font-size: 14px;
+        padding: 14px;
+    }
+
+    .faqs .accordion .accordion-item .accordion-body {
+        font-size: 14px;
+        padding: 14px;
+    }
+
+    .faqs .card {
+        padding: 20px;
+    }
+
+    .faqs .input-group-text {
+        padding: 13px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .faqs {
+        padding: 50px 0;
+    }
+
+    .faqs .heading {
+        font-size: 24px;
+        margin-bottom: 18px;
+    }
+
+    .faqs .accordion .accordion-item .accordion-button:not(.collapsed) {
+        font-size: 13px;
+        padding: 12px;
+    }
+
+    .faqs .accordion .accordion-item .accordion-body {
+        font-size: 13px;
+        padding: 12px;
+    }
+
+    .faqs .card {
+        padding: 12px;
+    }
+}
