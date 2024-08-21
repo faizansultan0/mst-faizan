@@ -1,0 +1,29 @@
+.profile .text-sm {
+    font-size: 14px;
+}
+
+.profile .img-div, .updateProfile .img-div {
+    width: 140px;
+    height: 140px;
+    background-color: darkgray;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.profile .img, .updateProfile .img {
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 120%;
+}
+
+.profile .img-txt {
+    font-size: 30px;
+}
+
+.profile .btn {
+    color: white;
+}

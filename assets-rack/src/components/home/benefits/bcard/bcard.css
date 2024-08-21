@@ -1,0 +1,77 @@
+.bcard {
+    padding: 42px 27px 20px;
+    position: relative;
+    text-align: center;
+}
+
+.bcard .bimg-parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.bcard .bimg {
+    z-index: 1;
+}
+
+.bcard .blottie {
+    position: absolute;
+    top: 0;
+    left: 135px;
+    width: 115px;
+    height: 116px;
+    /* display: none; */
+    opacity: 0;
+    transition: all 0.2s ease-in;
+}
+
+.bcard:hover .blottie {
+    /* display: block; */
+    opacity: 1;
+}
+
+.bcard .bcard-heading {
+    font-size: 24px;
+    font-weight: 600;
+    color: #080d42;
+    margin-bottom: 15px;
+    transition: all 0.2s linear;
+}
+
+.bcard:hover .bcard-heading {
+    transform: translateY(4px);
+}
+
+.bcard .bcard-para {
+    font-size: 16px;
+}
+
+@media screen and (max-width: 1800px) {
+    .bcard .bcard-para {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 1399.9px) {
+    .bcard {
+        padding: 26px 0px 10px;
+    }
+
+    .bcard .bimg-parent {
+        margin-bottom: 20px;
+    }
+
+    .bcard .bimg {
+        max-height: 60px;
+    }
+
+    .bcard .bcard-heading {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .bcard .bcard-para {
+        font-size: 12px;
+    }
+}

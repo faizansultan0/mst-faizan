@@ -1,0 +1,108 @@
+.features .heading {
+    font-size: 60px;
+    font-weight: 600;
+    color: #080d42;
+    text-align: center;
+    margin-bottom: 23px;
+}
+
+.features .para {
+    font-size: 21px;
+    font-weight: 300;
+    margin-bottom: 53px;
+    text-align: center;
+}
+
+.features .nav-tabs {
+    border: 0;
+}
+
+.features .nav-tabs .nav-link {
+    font-family: "Outfit", sans-serif;
+    color: #080d42;
+    border-radius: 29px;
+    font-size: 18px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.features .nav-tabs .nav-link:hover {
+    border-color: transparent;
+}
+
+.features .nav-tabs .nav-item.show .nav-link,
+.features .nav-tabs .nav-link.active {
+    padding: 16px 30px;
+    background-color: #080d42;
+    color: white;
+}
+
+@media screen and (max-width: 1800px) {
+    .features .heading {
+        font-size: 48px;
+        margin-bottom: 8px;
+    }
+
+    .features .para {
+        font-size: 18px;
+        margin-bottom: 32px;
+    }
+
+    .features .nav-tabs .nav-link {
+        font-size: 14px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .features .nav-tabs .nav-item.show .nav-link,
+    .features .nav-tabs .nav-link.active {
+        padding: 12px 24px;
+    }
+}
+
+@media screen and (max-width: 1399.9px) {
+    .features .heading {
+        font-size: 40px;
+        margin-bottom: 4px;
+    }
+
+    .features .para {
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+    .features .nav-tabs .nav-link {
+        font-size: 12px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .features .nav-tabs .nav-item.show .nav-link,
+    .features .nav-tabs .nav-link.active {
+        padding: 10px 16px;
+    }
+}
+
+@media screen and (max-width: 768.9px) {
+    .features .heading {
+        font-size: 36px;
+        margin-bottom: 0px;
+    }
+
+    .features .para {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+}
+
+@media screen and (max-width: 575.9px) {
+    .features .nav-tabs .nav-link {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+    
+    .features .nav-tabs .nav-item.show .nav-link,
+    .features .nav-tabs .nav-link.active {
+        padding: 6px 16px;
+    }
+}

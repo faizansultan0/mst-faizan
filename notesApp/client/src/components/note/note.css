@@ -1,0 +1,21 @@
+.title-word {
+    font-weight: 400;
+}
+
+.description-word {
+    font-weight: 400;
+}
+
+.note-page .delete-btn {
+    background-color: rgba(var(--bs-danger-rgb),var(--bs-bg-opacity));
+}
+
+.note-page .card .delete-btn:hover {
+    color: rgba(var(--bs-danger-rgb),var(--bs-bg-opacity));
+    border-color: rgba(var(--bs-danger-rgb),var(--bs-bg-opacity));
+    background-color: transparent!important;
+}
+
+.note-page .card .edit-btn:hover {
+    color: rgb(23, 174, 159)!important;
+}

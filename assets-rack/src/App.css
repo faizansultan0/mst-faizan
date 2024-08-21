@@ -1,0 +1,12 @@
+/* Global CSS */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+* {
+    font-family: 'Outfit', sans-serif;
+}
+
+@media screen and (min-width: 1800px) {
+    .wrapper .container {
+        max-width: 1640px!important;
+    }
+}

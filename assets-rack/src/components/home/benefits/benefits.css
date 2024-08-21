@@ -1,0 +1,67 @@
+.benefits .top-part {
+    text-align: center;
+}
+
+.benefits .heading {
+    font-size: 60px;
+    line-height: 68px;
+    font-weight: 600;
+    color: #080d42;
+    margin-bottom: 23px;
+}
+
+.benefits .top-part .para {
+    font-size: 21px;
+    font-weight: 300;
+    margin-bottom: 61px;
+}
+
+@media screen and (max-width: 1800px) {
+    .benefits .heading {
+        font-size: 52px;
+        line-height: 56px;
+        margin-bottom: 8px;
+    }
+
+    .benefits .top-part .para {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 1399.9px) {
+    .benefits .heading {
+        font-size: 42px;
+        line-height: 46px;
+        margin-bottom: 4px;
+    }
+
+    .benefits .top-part .para {
+        font-size: 14px;
+        margin-bottom: 22px;
+    }
+}
+
+@media screen and (max-width: 1199.9px) {
+    .benefits .top-part .para {
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .benefits .heading {
+        font-size: 36px;
+        line-height: 40px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .benefits .heading {
+        font-size: 30px;
+        line-height: 34px;
+    }
+
+    .benefits .top-part .para {
+        font-size: 13px;
+    }
+}

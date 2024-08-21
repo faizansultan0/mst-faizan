@@ -1,0 +1,18 @@
+.verify-parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.verify-parent .card {
+    min-height: 100px;
+    min-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.verify-parent .btn {
+    color: white;
+}
